@@ -1,0 +1,33 @@
+[
+    {
+        "titulo":"Polos",
+        "slug":"polos",
+        "_id": "1000"
+    },
+    {
+        "titulo":"Polivestidos",
+        "slug":"Polivestidos",
+        "_id": "1001"
+    },
+    {
+        "titulo":"Jeans",
+        "slug":"jeans",
+        "_id": "1004"
+    },
+    {
+        "titulo":"Blusas",
+        "slug":"Blusas",
+        "_id": "1005"
+    },
+    {
+        "titulo":"Leggings",
+        "slug":"leggins",
+        "_id": "1002"
+    },
+    {
+        "titulo":"Casacas",
+        "slug":"casacas",
+        "_id": "1006"
+    }
+    
+]

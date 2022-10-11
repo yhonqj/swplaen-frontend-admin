@@ -1,0 +1,153 @@
+<app-sidebar></app-sidebar>
+
+<div class="main-content">
+  <div class="container-fluid">
+    <div class="row justify-content-center">
+      <div class="col-12 col-lg-10 col-xl-8">
+
+        <!-- Header -->
+        <div class="header mt-md-5">
+          <div class="header-body">
+            <div class="row align-items-center">
+              <div class="col">
+
+                <!-- Pretitle -->
+                <h6 class="header-pretitle">
+                  Módulo
+                </h6>
+
+                <!-- Title -->
+                <h1 class="header-title">
+                  Productos
+                </h1>
+
+              </div>
+            </div> <!-- / .row -->
+
+          </div>
+        </div>
+
+        <!-- Alert -->
+
+
+        <ng-container *ngIf="!load_data">
+          <!-- Card -->
+          <form *ngIf="producto!=undefined" #actualizarForm="ngForm" (ngSubmit)="actualizar(actualizarForm)">
+            <div class="card">
+              <div class="card-header">
+
+                <!-- Title -->
+                <h4 class="card-header-title">
+                  Editar el producto
+                </h4>
+
+              </div>
+
+              <div *ngIf="!load_data" class="card-body">
+                <div class="row">
+                  <div class="col-6">
+                    <div class="form-group">
+                      <label for="exampleInputEmail1">Titulo del producto</label>
+                      <input type="text" class="form-control" placeholder="Titulo del producto" name="nombre"
+                        [(ngModel)]="producto.nombre" readonly>
+                    </div>
+                  </div>
+                  <div class="col-6">
+                    <div class="form-group">
+                      <label for="exampleInputEmail1">Stock</label>
+                      <input type="text" class="form-control" placeholder="Stock" name="stock"
+                        [(ngModel)]="producto.stock" readonly>
+                    </div>
+                  </div>
+                  <div class="col-6">
+                    <div class="form-group">
+                      <label for="exampleInputEmail1">Stock mínimo</label>
+                      <input type="number" class="form-control" required placeholder="Stock mínimo" name="nombre"
+                        [(ngModel)]="producto.stockMinimo">
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+              <ng-container *ngIf="load_data">
+                <div class="card-body">
+                  <div class="row">
+                    <div class="col-12 text-center">
+                      <div class="spinner-border" style="width: 3rem; height: 3rem;" role="status">
+                        <span class="visually-hidden"></span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </ng-container>
+              <div class="card-footer">
+
+                <a class="btn btn-warning btn-shadow mr-3" [routerLink]="['/productos']"
+                  routerLinkActive="router-link-active">Regresar</a>
+                <button *ngIf="!load_btn" class="btn btn-primary btn-shadow" type="submit">Actualizar y
+                  Publicar</button>
+
+                <button disabled *ngIf="load_btn" type="button" class="btn btn-primary btn-shadow">
+                  <span class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>
+                  Actualizando...
+                </button>
+
+
+              </div>
+            </div>
+          </form>
+          <ng-container *ngIf="producto == undefined">
+            <div class="card">
+              <div class="card-body">
+                <div class="row justify-content-center">
+                  <div class="col-12 col-md-5 col-xl-4 my-5">
+
+                    <div class="text-center">
+
+                      <!-- Preheading -->
+                      <h6 class="text-uppercase text-muted mb-4">
+                        404 error
+                      </h6>
+
+                      <!-- Heading -->
+                      <h1 class="display-4 mb-3">
+                        There’s no page here 😭
+                      </h1>
+
+                      <!-- Subheading -->
+                      <p class="text-muted mb-4">
+                        Looks like you ended up here by accident?
+                      </p>
+
+                      <!-- Button -->
+                      <a [routerLink]="['/productos']" class="btn btn-lg btn-primary">
+                        Regresar a productos
+                      </a>
+
+                    </div>
+
+                  </div>
+                </div>
+              </div>
+            </div>
+          </ng-container>
+        </ng-container>
+
+        <ng-container *ngIf="load_data">
+          <div class="card">
+            <div class="card-body">
+              <div class="row">
+                <div class="col-12 text-center">
+                  <div class="spinner-border text-primary" role="status">
+                    <span class="visually-hidden"></span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </ng-container>
+
+      </div>
+    </div> <!-- / .row -->
+  </div>
+</div>

@@ -1,0 +1,246 @@
+<app-sidebar></app-sidebar>
+
+<div class="main-content">
+  <div class="container-fluid">
+    <div class="row justify-content-center">
+      <div class="col-12 col-lg-10 col-xl-8">
+
+        <!-- Header -->
+        <div class="header mt-md-5">
+          <div class="header-body">
+            <div class="row align-items-center">
+              <div class="col">
+
+                <!-- Pretitle -->
+                <h6 class="header-pretitle">
+                  Módulo
+                </h6>
+
+                <!-- Title -->
+                <h1 class="header-title">
+                  Almacenes
+                </h1>
+
+              </div>
+            </div> <!-- / .row -->
+
+          </div>
+        </div>
+
+        <!-- Alert -->
+
+
+        <ng-container *ngIf="!load">
+          <!-- Card -->
+          <div *ngIf="almacen!=undefined" class="card">
+            <div class="card-header">
+
+              <!-- Title -->
+              <h4 class="card-header-title">
+                Productos en el Almacén
+              </h4>
+
+            </div>
+            <div class="card-body">
+              <div class="row">
+                <div class="col-12">
+                  <form #inventarioForm="ngForm" (ngSubmit)="registro_inventario(inventarioForm)" class="form-inline">
+                    <select name="variedad" required [(ngModel)]="producto.idProducto"
+                      class="form-control custom-select mb-3 mr-sm-4" id="select-input">
+                      <option value="" selected disabled>Seleccionar</option>
+                      <option value="{{item._id}}" *ngFor="let item of variedades">{{item.nombre}}</option>
+                    </select>
+
+
+                    <input required class="form-control mb-3 mr-sm-4" min="0" type="number" placeholder="Cantidad"
+                      name="cantidad" [(ngModel)]="producto.cantidad">
+
+                    <button class="btn btn-primary mb-3 mr-3" type="submit">Ingresar</button>
+
+
+                  </form>
+                </div>
+                <div class="col-12">
+                  <!--  <button class="btn btn-success" type="button" (click)="donwload_excel()">Exportar a excel</button> -->
+                </div>
+              </div>
+            </div>
+            <div class="card-body">
+              <ng-container *ngIf="!load">
+                <div class="table-responsive">
+                  <table class="table table-sm table-nowrap card-table">
+                    <thead>
+                      <tr>
+                        <th>Producto</th>
+                        <th>Stock</th>
+                        <th>Stock Mínimo</th>
+                        <th>Opciones</th>
+                      </tr>
+                    </thead>
+                    <tbody class="font-size-base" *ngIf="!load">
+                      <tr
+                        *ngFor="let item of inventarios">
+                        <td>
+                          {{item.producto.nombre}}
+                        </td>
+                        <td>
+                          {{item.stock}}
+                        </td>
+                        <td>
+                          {{item.stockMinimo}}
+                        </td>
+                        <td>
+                          <div class="dropdown">
+                            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButtonAlias"
+                              data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                              Opciones
+                            </button>
+
+                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButtonAlias">
+                              <li>
+                                <a class="dropdown-item" [routerLink]="['editar',item.producto._id]">Editar</a>
+                              </li>
+                              <li>
+                                <a class="dropdown-item"
+                                  [routerLink]="['/productos/variedades',item._id]">Variedades</a>
+                              </li>
+                              <li>
+                                <a class="dropdown-item"
+                                  [routerLink]="['/productos/inventario',item._id]">Inventario</a>
+                              </li>
+                              <li>
+                                <a class="dropdown-item" [routerLink]="['/productos/galeria',item._id]">Galería</a>
+                              </li>
+
+                              <a *ngIf="item.estado == 'Edicion'" class="dropdown-item" style="cursor: pointer;"
+                                data-toggle="modal" [attr.data-target]="'#vs-'+item._id">Mostrar producto</a>
+                            </ul>
+                          </div>
+
+                          <!-- <div class="modal fade" id="vs-{{item._id}}" tabindex="-1" style="display: none;" aria-hidden="true">
+                                    <div class="modal-dialog modal-dialog-centered" role="document">
+                                      <div class="modal-content">
+                                        <div class="modal-header">
+                                          <h4 class="modal-title">Confirmación de visibilidad</h4>
+                                          <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                                        </div>
+                                        <div class="modal-body">
+                                          <div class="alert d-flex alert-danger" role="alert" *ngIf="item.galeria.length!= 4">
+                                            <i class="ci-close-round lead me-3"></i>
+                                            <div>
+                                              Debe tener 4 imagenes en la galería.
+                                            </div>
+                                          </div>
+                
+                                          <p *ngIf="!item.vs">Desea hacer visible el producto en la tienda?</p>
+                                          <p *ngIf="item.vs">Desea ocultar el producto de la tienda?</p>
+                                        </div>
+                                        <div class="modal-footer">
+                                          <button class="btn btn-secondary btn-sm" type="button" data-dismiss="modal">Cancelar</button>
+                                          <ng-container *ngIf="!load_estado">
+                                            <button *ngIf="item.galeria.length!= 4" class="btn btn-danger btn-shadow btn-sm" disabled type="button">Si, cambiar</button>
+                                            <button *ngIf="item.galeria.length== 4" class="btn btn-danger btn-shadow btn-sm" (click)="cambiar_vs(item._id,item.estado)" type="button">Si, cambiar</button>
+                                          </ng-container>
+                                          
+                                          
+                                          <button disabled *ngIf="load_estado" type="button" class="btn btn-danger btn-shadow btn-sm">
+                                            <span class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>
+                                            Cambiando...
+                                          </button>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div> -->
+                        </td>
+                      </tr>
+
+                    </tbody>
+                    <tbody *ngIf="load">
+                      <tr>
+                        <td colspan="5" class="text-center">
+                          <div class="spinner-border text-primary" role="status">
+                            <span class="visually-hidden"></span>
+                          </div>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+
+              </ng-container>
+
+              <div class="card-footer">
+                <a class="btn btn-warning btn-shadow mr-3" [routerLink]="['/productos']"
+                  routerLinkActive="router-link-active">Regresar</a>
+              </div>
+              <ng-container *ngIf="load">
+                <div class="card-body">
+                  <div class="row">
+                    <div class="col-12 text-center">
+                      <div class="spinner-border" style="width: 3rem; height: 3rem;" role="status">
+                        <span class="visually-hidden"></span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </ng-container>
+            </div>
+
+
+          </div>
+          <ng-container *ngIf="almacen == undefined">
+            <div class="card">
+              <div class="card-body">
+                <div class="row justify-content-center">
+                  <div class="col-12 col-md-5 col-xl-4 my-5">
+
+                    <div class="text-center">
+
+                      <!-- Preheading -->
+                      <h6 class="text-uppercase text-muted mb-4">
+                        404 error
+                      </h6>
+
+                      <!-- Heading -->
+                      <h1 class="display-4 mb-3">
+                        There’s no page here 😭
+                      </h1>
+
+                      <!-- Subheading -->
+                      <p class="text-muted mb-4">
+                        Looks like you ended up here by accident?
+                      </p>
+
+                      <!-- Button -->
+                      <a [routerLink]="['/productos']" class="btn btn-lg btn-primary">
+                        Regresar a productos
+                      </a>
+
+                    </div>
+
+                  </div>
+                </div>
+              </div>
+            </div>
+          </ng-container>
+        </ng-container>
+        <ng-container *ngIf="load">
+          <div class="card">
+            <div class="card-body">
+              <div class="row">
+                <div class="col-12 text-center">
+                  <div class="spinner-border text-primary" role="status">
+                    <span class="visually-hidden"></span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </ng-container>
+
+
+
+      </div>
+    </div> <!-- / .row -->
+  </div>
+</div>
