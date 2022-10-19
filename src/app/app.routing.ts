@@ -5,7 +5,9 @@ import { LoginComponent } from "./components/login/login.component";
 import { IndexClientesComponent } from "./components/clientes/index-clientes/index-clientes.component";
 import { IndexProductoComponent } from "./components/productos/index-producto/index-producto.component";
 import { IndexAlmacenComponent } from "./components/almacenes/index-almacen/index-almacen.component";
+import { IndexTiendaComponent } from "./components/tiendas/index-tienda/index-tienda.component";
 import { InventarioAlmacenComponent } from "./components/almacenes/inventario-almacen/inventario-almacen.component";
+import { InventarioTiendaComponent } from "./components/tiendas/inventario-tienda/inventario-tienda.component";
 import { CreateProductoComponent } from "./components/productos/create-producto/create-producto.component";
 import { EditProductoComponent } from "./components/productos/edit-producto/edit-producto.component";
 import { VariedadesProductoComponent } from "./components/productos/variedades-producto/variedades-producto.component";
@@ -39,6 +41,9 @@ const appRoute : Routes = [
     {path: 'almacenes', component: IndexAlmacenComponent, canActivate:[AuthGuard]},
     {path: 'almacenes/inventario/:idAlmacen', component: InventarioAlmacenComponent, canActivate:[AuthGuard]},
     {path: 'almacenes/inventario/:idAlmacen/editar/:id', component: EditInventarioComponent, canActivate:[AuthGuard]},
+
+    {path: 'tiendas', component: IndexTiendaComponent, canActivate:[AuthGuard]},
+    {path: 'tiendas/inventario/:idTienda', component: InventarioTiendaComponent, canActivate:[AuthGuard]},
 
     {path: 'cupones', component: IndexCuponComponent, canActivate:[AuthGuard]},
     {path: 'cupones/create', component: CreateCuponComponent, canActivate:[AuthGuard]},

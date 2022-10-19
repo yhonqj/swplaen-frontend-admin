@@ -26,9 +26,11 @@ import { CreateCuponComponent } from './components/cupones/create-cupon/create-c
 import { EditCuponComponent } from './components/cupones/edit-cupon/edit-cupon.component';
 import { ConfigComponent } from './components/config/config.component';
 import { IndexVentasComponent } from './components/ventas/index-ventas/index-ventas.component';
+import { IndexTiendaComponent } from './components/tiendas/index-tienda/index-tienda.component';
 import { ShowVentasComponent } from './components/ventas/show-ventas/show-ventas.component';
 import { CreateVentasComponent } from './components/ventas/create-ventas/create-ventas.component';
 import { InventarioAlmacenComponent } from './components/almacenes/inventario-almacen/inventario-almacen.component';
+import { InventarioTiendaComponent } from './components/tiendas/inventario-tienda/inventario-tienda.component';
 import { EditInventarioComponent } from './components/almacenes/edit-inventario/edit-inventario.component';
 
 @NgModule({
@@ -41,7 +43,9 @@ import { EditInventarioComponent } from './components/almacenes/edit-inventario/
     IndexClientesComponent,
     IndexProductoComponent,
     IndexAlmacenComponent,
+    IndexTiendaComponent,
     InventarioAlmacenComponent,
+    InventarioTiendaComponent,
     CreateProductoComponent,
     EditProductoComponent,
     VariedadesProductoComponent,
