@@ -32,6 +32,7 @@ import { CreateVentasComponent } from './components/ventas/create-ventas/create-
 import { InventarioAlmacenComponent } from './components/almacenes/inventario-almacen/inventario-almacen.component';
 import { InventarioTiendaComponent } from './components/tiendas/inventario-tienda/inventario-tienda.component';
 import { EditInventarioComponent } from './components/almacenes/edit-inventario/edit-inventario.component';
+import { CreateInventarioComponent } from "./components/tiendas/create-inventario/create-inventario.component";
 
 @NgModule({
   declarations: [
@@ -58,7 +59,8 @@ import { EditInventarioComponent } from './components/almacenes/edit-inventario/
     IndexVentasComponent,
     ShowVentasComponent,
     CreateVentasComponent,
-    EditInventarioComponent
+    EditInventarioComponent,
+    CreateInventarioComponent
   ],
   imports: [
     BrowserModule,

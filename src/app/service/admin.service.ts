@@ -74,9 +74,14 @@ export class AdminService {
     return this._http.get(this.url + 'producto/getAllPaginate?limit='+limit+'&page='+page,{headers:headers});
   }
 
-  listar_almacenes_admin(token:any, limit: number, page:number):Observable<any>{
+  listar_almacenes_paginate_admin(token:any, limit: number, page:number):Observable<any>{
     let headers = new HttpHeaders({'Content-Type':'application/json','Authorization':token});
     return this._http.get(this.url + 'almacen/getAllPaginate?limit='+limit+'&page='+page,{headers:headers});
+  }
+
+  listar_almacenes_admin(token:any):Observable<any>{
+    let headers = new HttpHeaders({'Content-Type':'application/json','Authorization':token});
+    return this._http.get(this.url + 'almacen/getAll',{headers:headers});
   }
 
   listar_tiendas_admin(token:any, limit: number, page:number):Observable<any>{
@@ -102,6 +107,16 @@ export class AdminService {
   obtener_tienda_admin(id:any,token:any):Observable<any>{
     let headers = new HttpHeaders({'Content-Type':'application/json','Authorization':token});
     return this._http.get(this.url + 'tienda/getById?id='+id,{headers:headers});
+  }
+
+  obtener_productos_tienda_admin(id:any,token:any):Observable<any>{
+    let headers = new HttpHeaders({'Content-Type':'application/json','Authorization':token});
+    return this._http.get(this.url + 'tienda/getProductosById?id='+id,{headers:headers});
+  }
+
+  obtener_productos_tienda_paginate_admin(id:any,limit: number, page: number,token:any):Observable<any>{
+    let headers = new HttpHeaders({'Content-Type':'application/json','Authorization':token});
+    return this._http.get(this.url + 'tienda/getProductosByIdPaginate?id='+id+'&limit='+limit+'&page='+page,{headers:headers});
   }
 
   listar_etiquetas_producto_admin(id:any,token:any):Observable<any>{

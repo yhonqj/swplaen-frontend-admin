@@ -22,6 +22,7 @@ import { IndexVentasComponent } from "./components/ventas/index-ventas/index-ven
 import { CreateVentasComponent } from "./components/ventas/create-ventas/create-ventas.component";
 import { ShowVentasComponent } from "./components/ventas/show-ventas/show-ventas.component";
 import { EditInventarioComponent } from './components/almacenes/edit-inventario/edit-inventario.component';
+import { CreateInventarioComponent } from "./components/tiendas/create-inventario/create-inventario.component";
 
 const appRoute : Routes = [
     {path: '', redirectTo: 'login', pathMatch : 'full'},
@@ -44,6 +45,7 @@ const appRoute : Routes = [
 
     {path: 'tiendas', component: IndexTiendaComponent, canActivate:[AuthGuard]},
     {path: 'tiendas/inventario/:idTienda', component: InventarioTiendaComponent, canActivate:[AuthGuard]},
+    {path: 'tiendas/inventario/:idTienda/create', component: CreateInventarioComponent, canActivate:[AuthGuard]},
 
     {path: 'cupones', component: IndexCuponComponent, canActivate:[AuthGuard]},
     {path: 'cupones/create', component: CreateCuponComponent, canActivate:[AuthGuard]},

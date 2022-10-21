@@ -18,7 +18,7 @@
 
                 <!-- Title -->
                 <h1 class="header-title">
-                  Almacenes
+                  Tiendas
                 </h1>
 
               </div>
@@ -37,28 +37,14 @@
 
               <!-- Title -->
               <h4 class="card-header-title">
-                Productos en el Almacén
+                Productos en la tienda
               </h4>
 
             </div>
             <div class="card-body">
               <div class="row">
                 <div class="col-12">
-                  <form #inventarioForm="ngForm" (ngSubmit)="registro_inventario(inventarioForm)" class="form-inline">
-                    <select name="variedad" required [(ngModel)]="producto.idProducto"
-                      class="form-control custom-select mb-3 mr-sm-4" id="select-input">
-                      <option value="" selected disabled>Seleccionar</option>
-                      <option value="{{item._id}}" *ngFor="let item of variedades">{{item.nombre}}</option>
-                    </select>
-
-
-                    <input required class="form-control mb-3 mr-sm-4" min="0" type="number" placeholder="Cantidad"
-                      name="cantidad" [(ngModel)]="producto.cantidad">
-
-                    <button class="btn btn-primary mb-3 mr-3" type="submit">Ingresar</button>
-
-
-                  </form>
+                  <a class="btn btn-primary" [routerLink]="['create']" routerLinkActive="router-link-active"  style="cursor: pointer;">Nuevo producto</a>
                 </div>
                 <div class="col-12">
                   <!--  <button class="btn btn-success" type="button" (click)="donwload_excel()">Exportar a excel</button> -->
@@ -73,7 +59,9 @@
                       <tr>
                         <th>Producto</th>
                         <th>Stock</th>
-                        <th>Stock Mínimo</th>
+                        <th>Precio</th>
+                        <th>Descuento</th>
+                        <th>Estado</th>
                         <th>Opciones</th>
                       </tr>
                     </thead>
@@ -81,13 +69,24 @@
                       <tr
                         *ngFor="let item of inventarios">
                         <td>
-                          {{item.producto.nombre}}
+                          {{item.nombre}}
                         </td>
                         <td>
                           {{item.stock}}
                         </td>
                         <td>
-                          {{item.stockMinimo}}
+                          {{item.precio}}
+                        </td>
+                        <td>
+                          {{item.descuento}}
+                        </td>
+                        <td>
+                          <span *ngIf="item.disponible" span class="badge badge-success">
+                            Disponible
+                          </span>
+                          <span *ngIf="!item.disponible" span class="badge badge-danger">
+                            No disponible
+                          </span>
                         </td>
                         <td>
                           <div class="dropdown">

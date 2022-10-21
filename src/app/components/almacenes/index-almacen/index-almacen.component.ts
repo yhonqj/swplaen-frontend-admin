@@ -39,7 +39,7 @@ export class IndexAlmacenComponent implements OnInit {
 
   init_data(){
     this.load = true;
-    this._adminService.listar_almacenes_admin(this.token,this.pageSize, this.page).subscribe(
+    this._adminService.listar_almacenes_paginate_admin(this.token,this.pageSize, this.page).subscribe(
       response=>{
         this.almacenes = response.results;
         this.load = false;

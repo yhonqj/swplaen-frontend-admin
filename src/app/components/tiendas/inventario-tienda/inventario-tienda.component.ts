@@ -26,7 +26,7 @@ export class InventarioTiendaComponent implements OnInit {
   public load_btn = false;
 
   public page = 1;
-  public pageSize = 40;
+  public limit = 40;
 
   public load_del = false;
   public load = true;
@@ -44,15 +44,13 @@ export class InventarioTiendaComponent implements OnInit {
         this.id = params['idTienda'];
 
         this.load = true;
-        this.listar_variedades();
-        this._adminService.obtener_tienda_admin(this.id,this.token).subscribe(
+        this._adminService.obtener_productos_tienda_paginate_admin(this.id,this.limit,this.page,this.token).subscribe(
           response=>{
            if(response == undefined){
             this.tienda = undefined;
             this.load = false;
            }else{
-             this.tienda = response;
-             this.inventarios = response.productos;
+             this.inventarios = response.results;
              this.load = false;
            }
             
@@ -64,6 +62,7 @@ export class InventarioTiendaComponent implements OnInit {
   }
 
   listar_variedades(){
+
     this._adminService.listar_productos_admin(this.token).subscribe(
       response=>{
         this.variedades = response;

@@ -5,18 +5,17 @@ declare var iziToast:any;
 declare var $:any;
 
 @Component({
-  selector: 'app-create-producto',
-  templateUrl: './create-producto.component.html',
-  styleUrls: ['./create-producto.component.css']
+  selector: 'app-create-inventario',
+  templateUrl: './create-inventario.component.html',
+  styleUrls: ['./create-inventario.component.css']
 })
-export class CreateProductoComponent implements OnInit {
+export class CreateInventarioComponent implements OnInit {
 
-  public producto: any = {
-    categoria: '',
-    visibilidad: ''
-  };
   public imgSelect : any | ArrayBuffer = 'assets/img/01.jpg';
-  public categorias: Array<any> = [];
+  public almacenes: Array<any> = [];
+  public productos: Array<any> = [];
+  public almacen: any ={_id:''};
+  public producto: any;
   public config : any = {};
   public load_btn = false;
   public file : any = undefined;
@@ -38,14 +37,21 @@ export class CreateProductoComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this._adminService.get_categorias().subscribe(
+    this._adminService.listar_almacenes_admin(this.token).subscribe(
       response=>{
-        this.categorias = response;
+        this.almacenes = response;
         console.log(response);
-        
       }
     );
-    this.listar_etiquetas();
+  }
+
+  listar_productos_tienda(){
+    console.log(this.almacen)
+    this._adminService.obtener_productos_tienda_admin(this.almacen._id,this.token).subscribe(
+      response=>{
+        this.productos = response;
+      }
+    )
   }
 
   listar_etiquetas(){
