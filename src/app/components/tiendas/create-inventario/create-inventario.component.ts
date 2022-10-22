@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { AdminService } from 'src/app/service/admin.service';
 declare var iziToast:any;
 declare var $:any;
@@ -15,11 +15,14 @@ export class CreateInventarioComponent implements OnInit {
   public almacenes: Array<any> = [];
   public productos: Array<any> = [];
   public almacen: any ={_id:''};
-  public producto: any;
+  public cantidad: number = 0;
+  public precio: number = 0;
+  public producto: any = { idProducto: ''};
+  public stock: number = 0;
   public config : any = {};
   public load_btn = false;
   public file : any = undefined;
-
+  public idTienda: string = '';
 
   public arr_etiquetas: Array<any> = [];
   public token = localStorage.getItem('token');
@@ -28,6 +31,7 @@ export class CreateInventarioComponent implements OnInit {
   public etiquetas : Array<any> = [];
 
   constructor(
+    private _route: ActivatedRoute,
     private _adminService:AdminService,
     private _router:Router
   ) { 
@@ -37,47 +41,35 @@ export class CreateInventarioComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this._route.params.subscribe(
+      params=>{
+        this.idTienda = params['idTienda'];
     this._adminService.listar_almacenes_admin(this.token).subscribe(
       response=>{
         this.almacenes = response;
         console.log(response);
       }
     );
+      }
+    )
   }
 
-  listar_productos_tienda(){
-    console.log(this.almacen)
-    this._adminService.obtener_productos_tienda_admin(this.almacen._id,this.token).subscribe(
+  listar_productos_almacen(){
+    this._adminService.obtener_productos_almacen_admin(this.almacen._id,this.token).subscribe(
       response=>{
         this.productos = response;
       }
     )
   }
 
-  listar_etiquetas(){
-    this.load_data_etiqueta = true;
-    this._adminService.listar_etiquetas_admin(this.token).subscribe(
-      response=>{
-        this.etiquetas = response.data;
-        console.log(response);
-        this.load_data_etiqueta = false;
+  obtener_producto(){
+    for (let i = 0; i< this.productos.length; i++){
+      if (this.productos[i].idProducto === this.producto.idProducto){
+        this.stock = this.productos[i].stock;
+        break;
       }
-    );
-  }
-
-  
-  agregar_etiqueta(){
-    let arr_label = this.new_etiqueta.split('_');
-
-    this.arr_etiquetas.push({
-      etiqueta: arr_label[0],
-      titulo: arr_label[1]
-    });
-    this.new_etiqueta = '';
-  }
-
-  eliminar_etiqueta(idx:any){
-    this.arr_etiquetas.splice(idx,1)
+    }
+    
   }
 
   fileChangeEvent(event:any):void{
@@ -141,26 +133,17 @@ export class CreateInventarioComponent implements OnInit {
 
   registro(registroForm:any){
     if(registroForm.valid){
-      if(this.file == undefined){
-        iziToast.show({
-          title: 'ERROR',
-            titleColor: '#FF0000',
-            color: '#FFF',
-            class: 'text-danger',
-            position: 'topRight',
-            message: 'Debe subir una portada para registrar'
-        });
-        $('#input-portada').text('Seleccionar imagen');
-        this.imgSelect = 'assets/img/01.jpg';
-        this.file = undefined;
-      }else{
         this.load_btn = true;
-        this.producto.etiquetas = this.arr_etiquetas;
-        
-        this._adminService.registro_producto_admin(this.producto,this.file,this.token).subscribe(
+        let data = {
+          precio: this.precio,
+          idProducto: this.producto.idProducto,
+          idAlmacen: this.almacen._id,
+          cantidad: this.cantidad,
+          idTienda: this.idTienda
+        }
+        this._adminService.registro_producto_tienda_admin(data,this.token).subscribe(
           response=>{
-  
-            if(response.data == undefined){
+            if(response == undefined){
               iziToast.show({
                   title: 'ERROR',
                   titleColor: '#FF0000',
@@ -181,7 +164,7 @@ export class CreateInventarioComponent implements OnInit {
               });
               this.load_btn = false;
 
-              this._router.navigate(['/productos']);
+              this._router.navigate(['/tiendas/inventario/',this.idTienda]);
             }
           },
           error=>{
@@ -190,7 +173,7 @@ export class CreateInventarioComponent implements OnInit {
         );
 
         this.load_btn = false;
-      }
+      
       
     }else{
 

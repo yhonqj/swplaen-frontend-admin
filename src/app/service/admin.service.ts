@@ -46,6 +46,11 @@ export class AdminService {
     return this._http.post(this.url+'agregar_etiqueta_admin',data,{headers:headers});
   }
 
+  registro_producto_tienda_admin(data:any,token:any):Observable<any>{
+    let headers = new HttpHeaders({'Content-Type':'application/json','Authorization':token});
+    return this._http.patch(this.url+'tienda/addProducto',data,{headers:headers});
+  }
+
   registro_producto_admin(data:any,file:any,token:any):Observable<any>{
     let headers = new HttpHeaders({'Authorization':token});
     const fd = new FormData();
@@ -112,6 +117,11 @@ export class AdminService {
   obtener_productos_tienda_admin(id:any,token:any):Observable<any>{
     let headers = new HttpHeaders({'Content-Type':'application/json','Authorization':token});
     return this._http.get(this.url + 'tienda/getProductosById?id='+id,{headers:headers});
+  }
+
+  obtener_productos_almacen_admin(id:any,token:any):Observable<any>{
+    let headers = new HttpHeaders({'Content-Type':'application/json','Authorization':token});
+    return this._http.get(this.url + 'almacen/getProductosById?id='+id,{headers:headers});
   }
 
   obtener_productos_tienda_paginate_admin(id:any,limit: number, page: number,token:any):Observable<any>{

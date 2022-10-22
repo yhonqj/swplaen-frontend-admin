@@ -1,88 +1,106 @@
 <app-sidebar></app-sidebar>
 
 <div class="main-content">
-    <div class="container-fluid">
-        <div class="row justify-content-center">
-          <div class="col-12 col-lg-10 col-xl-8">
+  <div class="container-fluid">
+    <div class="row justify-content-center">
+      <div class="col-12 col-lg-10 col-xl-8">
 
-            <!-- Header -->
-            <div class="header mt-md-5">
-              <div class="header-body">
-                <div class="row align-items-center">
-                  <div class="col">
+        <!-- Header -->
+        <div class="header mt-md-5">
+          <div class="header-body">
+            <div class="row align-items-center">
+              <div class="col">
 
-                    <!-- Pretitle -->
-                    <h6 class="header-pretitle">
-                      Módulo
-                    </h6>
+                <!-- Pretitle -->
+                <h6 class="header-pretitle">
+                  Módulo
+                </h6>
 
-                    <!-- Title -->
-                    <h1 class="header-title">
-                        Tiendas
-                    </h1>
+                <!-- Title -->
+                <h1 class="header-title">
+                  Tiendas
+                </h1>
 
-                  </div>
-                </div> <!-- / .row -->
-      
               </div>
-            </div>
-
-            <!-- Alert -->
-
-
-            <!-- Card -->
-            <form #registroForm="ngForm" (ngSubmit)="registro(registroForm)">
-              <div class="card">
-                <div class="card-header">
-  
-                  <!-- Title -->
-                  <h4 class="card-header-title">
-                    Registro de un producto
-                  </h4>
-  
-                </div>
-  
-                <div class="card-body">
-                  <div class="row">
-                      <div class="col-lg-8">
-                          <div class="row">
-                              <div class="col-6">
-                                  <label for="exampleInputEmail1">Almacén (*)</label>
-                                  <select  class="form-control custom-select" id="select-input" required name="almacen" [(ngModel)]="almacen._id"(ngModelChange)="listar_productos_tienda()">
-                                      <option value="" selected>Seleccionar</option>
-                                      <option value="{{item._id}}" *ngFor="let item of almacenes">{{item.codigo}}</option>
-                                  </select>
-                              </div>
-                              <div class="col-6">
-                                <label for="exampleInputEmail1">Producto (*)</label>
-                                <select class="form-control custom-select" id="select-input" required name="producto" [(ngModel)]="producto">
-                                    <option value="" selected disabled>Seleccionar</option>
-                                    <option value="{{item._id}}" *ngFor="let item of productos">{{item.nombre}}</option>
-                                </select>
-                              </div>
-     
-                            
-                          </div>
-                      </div>
-                  </div>
-                </div>
-                <div class="card-footer">
-  
-                    <a class="btn btn-warning btn-shadow mr-3" [routerLink]="['/productos']" routerLinkActive="router-link-active" >Regresar</a>
-                    <button *ngIf="!load_btn" class="btn btn-primary btn-shadow" type="submit">Crear</button>
-                                    
-                    <button disabled *ngIf="load_btn" type="button" class="btn btn-primary btn-shadow">
-                        <span class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>
-                        Creando...
-                    </button>
-  
-                    
-                </div>
-              </div>
-            </form>
-              
+            </div> <!-- / .row -->
 
           </div>
-        </div> <!-- / .row -->
+        </div>
+
+        <!-- Alert -->
+
+
+        <!-- Card -->
+        <form #registroForm="ngForm" (ngSubmit)="registro(registroForm)">
+          <div class="card">
+            <div class="card-header">
+
+              <!-- Title -->
+              <h4 class="card-header-title">
+                Registro de un producto
+              </h4>
+
+            </div>
+
+            <div class="card-body">
+              <div class="row">
+                <div class="col-lg-4">
+                  <label for="exampleInputEmail1">Almacén (*)</label>
+                  <select class="form-control custom-select" id="select-input" required name="almacen"
+                    [(ngModel)]="almacen._id" (ngModelChange)="listar_productos_almacen()">
+                    <option value="" selected>Seleccionar</option>
+                    <option value="{{item._id}}" *ngFor="let item of almacenes">{{item.codigo}}</option>
+                  </select>
+                </div>
+                <div class="col-lg-4">
+                  <label for="exampleInputEmai">Producto (*)</label>
+                  <select class="form-control custom-select" id="select-input" required name="producto"
+                    [(ngModel)]="producto.idProducto" (ngModelChange)="obtener_producto()">
+                    <option value="" selected>Seleccionar</option>
+                    <option value="{{item.idProducto}}" *ngFor="let item of productos">{{item.nombre}}</option>
+                  </select>
+                </div>
+                <div class="col-lg-4">
+                  <div class="form-group">
+                    <label for="exampleInputEm">Stock</label>
+                    <input type="number" class="form-control" readonly placeholder="Stock" name="stock"
+                      [(ngModel)]="stock">
+                  </div>
+                </div>
+                <div class="col-lg-4">
+                  <div class="form-group">
+                    <label for="exampleInputEmail1">Cantidad (*)</label>
+                    <input type="number" class="form-control" required placeholder="Cantidad" name="cantidad"
+                      [(ngModel)]="cantidad">
+                  </div>
+                </div>
+                <div class="col-lg-4">
+                  <div class="form-group">
+                    <label for="exampleInputEmail1">Precio (*)</label>
+                    <input type="number" class="form-control" required placeholder="Precio" name="precio"
+                      [(ngModel)]="precio">
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="card-footer">
+
+              <a class="btn btn-warning btn-shadow mr-3" [routerLink]="['/tiendas/inventario/',idTienda]"
+                routerLinkActive="router-link-active">Regresar</a>
+              <button *ngIf="!load_btn" class="btn btn-primary btn-shadow" type="submit">Crear</button>
+
+              <button disabled *ngIf="load_btn" type="button" class="btn btn-primary btn-shadow">
+                <span class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>
+                Creando...
+              </button>
+
+
+            </div>
+          </div>
+        </form>
+
+
       </div>
+    </div> <!-- / .row -->
+  </div>
 </div>

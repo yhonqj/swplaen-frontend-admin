@@ -95,7 +95,7 @@
                               Opciones
                             </button>
 
-                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButtonAlias">
+                            <!-- <ul class="dropdown-menu" aria-labelledby="dropdownMenuButtonAlias">
                               <li>
                                 <a class="dropdown-item" [routerLink]="['editar',item.producto._id]">Editar</a>
                               </li>
@@ -113,7 +113,7 @@
 
                               <a *ngIf="item.estado == 'Edicion'" class="dropdown-item" style="cursor: pointer;"
                                 data-toggle="modal" [attr.data-target]="'#vs-'+item._id">Mostrar producto</a>
-                            </ul>
+                            </ul> -->
                           </div>
 
                           <!-- <div class="modal fade" id="vs-{{item._id}}" tabindex="-1" style="display: none;" aria-hidden="true">
@@ -169,7 +169,7 @@
               </ng-container>
 
               <div class="card-footer">
-                <a class="btn btn-warning btn-shadow mr-3" [routerLink]="['/productos']"
+                <a class="btn btn-warning btn-shadow mr-3" [routerLink]="['/tiendas']"
                   routerLinkActive="router-link-active">Regresar</a>
               </div>
               <ng-container *ngIf="load">
