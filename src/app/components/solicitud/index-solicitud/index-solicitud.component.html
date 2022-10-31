@@ -1,0 +1,179 @@
+<app-sidebar></app-sidebar>
+
+<div class="main-content">
+  <div class="container-fluid">
+    <div class="row justify-content-center">
+      <div class="col-11">
+
+        <!-- Header -->
+        <div class="header mt-md-5">
+          <div class="header-body">
+            <div class="row align-items-center">
+              <div class="col">
+
+                <!-- Pretitle -->
+                <h6 class="header-pretitle">
+                  Módulo
+                </h6>
+
+                <!-- Title -->
+                <h1 class="header-title">
+                  Solicitud de Compra
+                </h1>
+
+              </div>
+            </div> <!-- / .row -->
+
+          </div>
+        </div>
+
+        <!-- Alert -->
+
+
+        <!-- Card -->
+        <div class="card">
+          <div class="card-header">
+
+            <!-- Title -->
+            <h4 class="card-header-title">
+              Datos del Proveedor
+            </h4>
+
+          </div>
+          <div class="card-body">
+            <div class="row">
+              <div class="col-lg-4">
+                <label for="exampleInputEmail1">Proveedor (*)</label>
+                <select class="form-control custom-select" id="select-input" required name="proveedor"
+                  [(ngModel)]="proveedor._id" (ngModelChange)="listar_materias_primas_proveedor()">
+                  <option value="" selected>Seleccionar</option>
+                  <option value="{{item._id}}" *ngFor="let item of proveedores">{{item.apellidos}} {{item.nombres}}
+                  </option>
+                </select>
+              </div>
+              <div class="col-lg-4">
+                <div class="form-group">
+                  <label for="exampleInputEm">Correo</label>
+                  <input type="text" class="form-control" readonly name="correo" [(ngModel)]="proveedor.correo">
+                </div>
+              </div>
+              <div class="col-lg-4">
+                <div class="form-group">
+                  <label for="exampleInputEm">Celular</label>
+                  <input type="text" class="form-control" readonly name="celular" [(ngModel)]="proveedor.celular">
+                </div>
+              </div>
+              <div class="col-lg-4">
+                <div class="form-group">
+                  <label for="exampleInputEm">Ruc</label>
+                  <input type="text" class="form-control" readonly name="ruc" [(ngModel)]="proveedor.ruc">
+                </div>
+              </div>
+              <div class="col-lg-4">
+                <div class="form-group">
+                  <label for="exampleInputEm">Razón Social</label>
+                  <input type="text" class="form-control" readonly name="razonSocial"
+                    [(ngModel)]="proveedor.razonSocial">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div> <!-- / .row -->
+        <div *ngIf="materiasPrimas.length !== 0" class="card">
+          <div class="card-header">
+
+            <!-- Title -->
+            <h4 class="card-header-title">
+              Materias Primas del Proveedor
+            </h4>
+
+          </div>
+          <div class="card-body">
+            <div class="table-responsive">
+              <table class="table table-sm table-nowrap card-table">
+                <thead>
+                  <tr>
+                    <th>Nombre</th>
+                    <th>Categoría</th>
+                    <th>Cantidad</th>
+                    <th>Precio</th>
+                    <th></th>
+                  </tr>
+                </thead>
+                <tbody class="font-size-base">
+                  <tr *ngFor="let item of materiasPrimas | slice: (page-1) * limit : (page-1) * limit + limit">
+                    <td>
+                      {{item.nombre}}
+                    </td>
+                    <td>
+                      {{item.categoriaMateriaPrima}}
+                    </td>
+                    <td>
+                      {{item.cantidad}}
+                    </td>
+                    <td>
+                      S/ {{item.precio}}
+                    </td>
+                    <td>
+                      <button class="btn btn-success" type="button" (click)="agregar_materia_prima(item)">
+                        Agregar
+                      </button>
+                    </td>
+                  </tr>
+
+                </tbody>
+              </table>
+              <ngb-pagination *ngIf="materiasPrimas.length >= 1" [(page)]="page" [pageSize]="limit" [maxSize]="10"
+                [rotate]="true" [boundaryLinks]="true" [collectionSize]="materiasPrimas.length"></ngb-pagination>
+            </div>
+
+          </div>
+
+        </div>
+        <div *ngIf="solicitud.length !== 0" class="card">
+          <div class="card-header">
+
+            <!-- Title -->
+            <h4 class="card-header-title">
+              Solicitud de Compra
+            </h4>
+
+          </div>
+          <div class="card-body">
+            <div *ngFor="let item of solicitud" class="row">
+              <div class="col-lg-4">
+                <div class="form-group">
+                  <label for="exampleInputEm">Materia Prima</label>
+                  <input type="text" class="form-control" readonly name="nombre" [(ngModel)]="item.nombreSolicitud">
+                </div>
+              </div>
+              <div class="col-lg-4">
+                <div class="form-group">
+                  <label for="exampleInputEm">Cantidad</label>
+                  <input type="text" class="form-control" name="cantidad" [(ngModel)]="item.cantidadSolicitud">
+                </div>
+              </div>
+              <div class="col-lg-4">
+                <div class="form-group">
+                  <label for="exampleInputEm">Precio</label>
+                  <input type="text" class="form-control" name="precio" [(ngModel)]="item.precioSolicitud">
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-lg-8">
+                <div class="form-group">
+                  <label for="example">Observación</label>
+                  <textarea class="form-control" name="Observacion" cols="30" rows="3" [(ngModel)]="observacion"></textarea>
+                </div>
+              </div>
+            </div>
+            <div class="card-footer">
+              <button class="btn btn-success" type="button" (click)="registrar_solicitud()">Registrar Solicitud</button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>

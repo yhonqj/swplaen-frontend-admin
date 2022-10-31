@@ -15,6 +15,7 @@ import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { TopnavComponent } from './components/topnav/topnav.component';
 import { IndexClientesComponent } from './components/clientes/index-clientes/index-clientes.component';
 import { IndexProductoComponent } from './components/productos/index-producto/index-producto.component';
+import { IndexProveedorComponent } from './components/proveedores/index-proveedor/index-proveedor.component';
 import { IndexAlmacenComponent } from './components/almacenes/index-almacen/index-almacen.component';
 import { CreateProductoComponent } from './components/productos/create-producto/create-producto.component';
 import { EditProductoComponent } from './components/productos/edit-producto/edit-producto.component';
@@ -33,6 +34,8 @@ import { InventarioAlmacenComponent } from './components/almacenes/inventario-al
 import { InventarioTiendaComponent } from './components/tiendas/inventario-tienda/inventario-tienda.component';
 import { EditInventarioComponent } from './components/almacenes/edit-inventario/edit-inventario.component';
 import { CreateInventarioComponent } from "./components/tiendas/create-inventario/create-inventario.component";
+import { InventarioProveedorComponent } from './components/proveedores/inventario-proveedor/inventario-proveedor.component';
+import { IndexSolicitudComponent } from './components/solicitud/index-solicitud/index-solicitud.component';
 
 @NgModule({
   declarations: [
@@ -60,7 +63,10 @@ import { CreateInventarioComponent } from "./components/tiendas/create-inventari
     ShowVentasComponent,
     CreateVentasComponent,
     EditInventarioComponent,
-    CreateInventarioComponent
+    CreateInventarioComponent,
+    IndexProveedorComponent,
+    InventarioProveedorComponent,
+    IndexSolicitudComponent
   ],
   imports: [
     BrowserModule,

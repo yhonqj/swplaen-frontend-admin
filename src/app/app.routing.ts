@@ -23,6 +23,9 @@ import { CreateVentasComponent } from "./components/ventas/create-ventas/create-
 import { ShowVentasComponent } from "./components/ventas/show-ventas/show-ventas.component";
 import { EditInventarioComponent } from './components/almacenes/edit-inventario/edit-inventario.component';
 import { CreateInventarioComponent } from "./components/tiendas/create-inventario/create-inventario.component";
+import { IndexProveedorComponent } from './components/proveedores/index-proveedor/index-proveedor.component';
+import { InventarioProveedorComponent } from "./components/proveedores/inventario-proveedor/inventario-proveedor.component";
+import { IndexSolicitudComponent } from "./components/solicitud/index-solicitud/index-solicitud.component";
 
 const appRoute : Routes = [
     {path: '', redirectTo: 'login', pathMatch : 'full'},
@@ -31,6 +34,11 @@ const appRoute : Routes = [
 
 
     {path: 'clientes', component: IndexClientesComponent, canActivate:[AuthGuard]},
+
+    {path: 'solicitud', component: IndexSolicitudComponent, canActivate:[AuthGuard]},
+
+    {path: 'proveedores', component: IndexProveedorComponent, canActivate:[AuthGuard]},
+    {path: 'proveedores/inventario/:idProveedor', component: InventarioProveedorComponent, canActivate:[AuthGuard]},
 
     {path: 'productos', component: IndexProductoComponent, canActivate:[AuthGuard]},
     {path: 'productos/create', component: CreateProductoComponent, canActivate:[AuthGuard]},

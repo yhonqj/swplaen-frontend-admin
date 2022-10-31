@@ -27,6 +27,21 @@ export class AdminService {
     return this._http.get(this.url + 'listar_clientes_tienda',{headers:headers});
   }
 
+  listar_proveedores(token:any):Observable<any>{
+    let headers = new HttpHeaders({'Content-Type':'application/json','Authorization':token});
+    return this._http.get(this.url + 'proveedor/getAll',{headers:headers});
+  }
+
+  listar_proveedores_paginate(token:any, limit: number, page: number):Observable<any>{
+    let headers = new HttpHeaders({'Content-Type':'application/json','Authorization':token});
+    return this._http.get(this.url + 'proveedor/getAllPaginate?limit='+limit+'&page='+page,{headers:headers});
+  }
+
+  listar_materias_primas_proveedor_paginate(token:any, id: string, limit: number, page: number):Observable<any>{
+    let headers = new HttpHeaders({'Content-Type':'application/json','Authorization':token});
+    return this._http.get(this.url + 'proveedor/getMateriasPrimasByIdPaginate?id='+id+'&limit='+limit+'&page='+page,{headers:headers});
+  }
+
   get_categorias():Observable<any>{
     return this._http.get('./assets/categorias.json');
   }
@@ -49,6 +64,11 @@ export class AdminService {
   registro_producto_tienda_admin(data:any,token:any):Observable<any>{
     let headers = new HttpHeaders({'Content-Type':'application/json','Authorization':token});
     return this._http.patch(this.url+'tienda/addProducto',data,{headers:headers});
+  }
+
+  registro_orden(data:any,token:any):Observable<any>{
+    let headers = new HttpHeaders({'Content-Type':'application/json','Authorization':token});
+    return this._http.post(this.url+'orden/add',data,{headers:headers});
   }
 
   registro_producto_admin(data:any,file:any,token:any):Observable<any>{
