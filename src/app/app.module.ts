@@ -36,6 +36,9 @@ import { EditInventarioComponent } from './components/almacenes/edit-inventario/
 import { CreateInventarioComponent } from "./components/tiendas/create-inventario/create-inventario.component";
 import { InventarioProveedorComponent } from './components/proveedores/inventario-proveedor/inventario-proveedor.component';
 import { IndexSolicitudComponent } from './components/solicitud/index-solicitud/index-solicitud.component';
+import { IndexOrdenComponent } from './components/ordenes/index-orden/index-orden.component';
+import { InicioAlmacenComponent } from './components/almacenes/inicio-almacen/inicio-almacen.component';
+import { DatePipe } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -66,7 +69,9 @@ import { IndexSolicitudComponent } from './components/solicitud/index-solicitud/
     CreateInventarioComponent,
     IndexProveedorComponent,
     InventarioProveedorComponent,
-    IndexSolicitudComponent
+    IndexSolicitudComponent,
+    IndexOrdenComponent,
+    InicioAlmacenComponent
   ],
   imports: [
     BrowserModule,
@@ -79,7 +84,9 @@ import { IndexSolicitudComponent } from './components/solicitud/index-solicitud/
       baseURL: '../../../assets/tinymce/',
     }),
   ],
-  providers: [],
+  providers: [
+    DatePipe
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

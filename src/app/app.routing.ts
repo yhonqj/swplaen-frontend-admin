@@ -26,6 +26,8 @@ import { CreateInventarioComponent } from "./components/tiendas/create-inventari
 import { IndexProveedorComponent } from './components/proveedores/index-proveedor/index-proveedor.component';
 import { InventarioProveedorComponent } from "./components/proveedores/inventario-proveedor/inventario-proveedor.component";
 import { IndexSolicitudComponent } from "./components/solicitud/index-solicitud/index-solicitud.component";
+import { IndexOrdenComponent } from "./components/ordenes/index-orden/index-orden.component";
+import { InicioAlmacenComponent } from "./components/almacenes/inicio-almacen/inicio-almacen.component";
 
 const appRoute : Routes = [
     {path: '', redirectTo: 'login', pathMatch : 'full'},
@@ -35,7 +37,8 @@ const appRoute : Routes = [
 
     {path: 'clientes', component: IndexClientesComponent, canActivate:[AuthGuard]},
 
-    {path: 'solicitud', component: IndexSolicitudComponent, canActivate:[AuthGuard]},
+    {path: 'ordenes', component: IndexOrdenComponent, canActivate:[AuthGuard]},
+    {path: 'ordenes/create', component: IndexSolicitudComponent, canActivate:[AuthGuard]},
 
     {path: 'proveedores', component: IndexProveedorComponent, canActivate:[AuthGuard]},
     {path: 'proveedores/inventario/:idProveedor', component: InventarioProveedorComponent, canActivate:[AuthGuard]},
@@ -47,9 +50,10 @@ const appRoute : Routes = [
     {path: 'productos/inventario/:id', component: InventarioProductoComponent, canActivate:[AuthGuard]},
     {path: 'productos/galeria/:id', component: GaleriaProductoComponent, canActivate:[AuthGuard]},
 
-    {path: 'almacenes', component: IndexAlmacenComponent, canActivate:[AuthGuard]},
-    {path: 'almacenes/inventario/:idAlmacen', component: InventarioAlmacenComponent, canActivate:[AuthGuard]},
-    {path: 'almacenes/inventario/:idAlmacen/editar/:id', component: EditInventarioComponent, canActivate:[AuthGuard]},
+    {path: 'almacenes', component: InicioAlmacenComponent, canActivate:[AuthGuard]},
+    {path: 'almacenes/producto', component: IndexAlmacenComponent, canActivate:[AuthGuard]},
+    {path: 'almacenes/producto/inventario/:idAlmacen', component: InventarioAlmacenComponent, canActivate:[AuthGuard]},
+    {path: 'almacenes/producto/inventario/:idAlmacen/editar/:id', component: EditInventarioComponent, canActivate:[AuthGuard]},
 
     {path: 'tiendas', component: IndexTiendaComponent, canActivate:[AuthGuard]},
     {path: 'tiendas/inventario/:idTienda', component: InventarioTiendaComponent, canActivate:[AuthGuard]},

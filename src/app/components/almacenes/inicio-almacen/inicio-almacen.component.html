@@ -1,0 +1,56 @@
+<app-sidebar></app-sidebar>
+
+<div class="main-content">
+  <div class="container-fluid">
+    <div class="row justify-content-center">
+      <div class="col-11">
+
+        <!-- Header -->
+        <div class="header mt-md-5">
+          <div class="header-body">
+            <div class="row align-items-center">
+              <div class="col">
+
+                <!-- Pretitle -->
+                <h6 class="header-pretitle">
+                  Módulo
+                </h6>
+
+                <!-- Title -->
+                <h1 class="header-title">
+                  Almacenes
+                </h1>
+
+              </div>
+            </div> <!-- / .row -->
+
+          </div>
+        </div>
+
+        <!-- Alert -->
+
+
+        <div class="row">
+          <div class="col-lg-4">
+            <div class="card" style="min-width: 200px; cursor: pointer;" [routerLink]="['/almacenes/producto']" routerLinkActive="router-link-active">
+              <img class="card-img-top" style="height: auto; width: 200px; margin: auto;" src="assets/img/productos.png" alt="Card image cap">
+              <div class="card-body">
+                <h3 class="card-title" style="text-align: center;">Productos</h3>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-4">
+            <div class="card" style="min-width: 200px; cursor: pointer;">
+              <img class="card-img-top" style="height: auto; width: 200px; margin: auto;" src="assets/img/materiaPrima.png" alt="Card image cap">
+              <div class="card-body">
+                <h3 class="card-title" style="text-align: center;">Materias Primas</h3>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+          
+      </div>
+    </div> <!-- / .row -->
+  </div>
+</div>

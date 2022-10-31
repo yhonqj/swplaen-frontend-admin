@@ -26,6 +26,11 @@ export class AdminService {
     let headers = new HttpHeaders({'Content-Type':'application/json','Authorization':token});
     return this._http.get(this.url + 'listar_clientes_tienda',{headers:headers});
   }
+  
+  listar_ordenes_paginate(token:any, limit: number, page: number):Observable<any>{
+    let headers = new HttpHeaders({'Content-Type':'application/json','Authorization':token});
+    return this._http.get(this.url + 'orden/getAllPaginate?limit='+limit+'&page='+page,{headers:headers});
+  }
 
   listar_proveedores(token:any):Observable<any>{
     let headers = new HttpHeaders({'Content-Type':'application/json','Authorization':token});
