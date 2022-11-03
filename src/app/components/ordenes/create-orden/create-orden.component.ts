@@ -3,11 +3,11 @@ import { Router } from '@angular/router';
 import { AdminService } from 'src/app/service/admin.service';
 declare var iziToast: any;
 @Component({
-  selector: 'app-index-solicitud',
-  templateUrl: './index-solicitud.component.html',
-  styleUrls: ['./index-solicitud.component.css']
+  selector: 'app-create-orden',
+  templateUrl: './create-orden.component.html',
+  styleUrls: ['./create-orden.component.css']
 })
-export class IndexSolicitudComponent implements OnInit {
+export class CreateOrdenComponent implements OnInit {
 
   public proveedores: Array<any> = [];
   public solicitud: Array<any> = [];

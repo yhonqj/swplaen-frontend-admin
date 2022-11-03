@@ -10,24 +10,18 @@ import { InventarioAlmacenComponent } from "./components/almacenes/inventario-al
 import { InventarioTiendaComponent } from "./components/tiendas/inventario-tienda/inventario-tienda.component";
 import { CreateProductoComponent } from "./components/productos/create-producto/create-producto.component";
 import { EditProductoComponent } from "./components/productos/edit-producto/edit-producto.component";
-import { VariedadesProductoComponent } from "./components/productos/variedades-producto/variedades-producto.component";
-import { InventarioProductoComponent } from "./components/productos/inventario-producto/inventario-producto.component";
-import { GaleriaProductoComponent } from "./components/productos/galeria-producto/galeria-producto.component";
 import { AuthGuard } from "../app/guards/auth.guard";
-import { IndexCuponComponent } from "./components/cupones/index-cupon/index-cupon.component";
-import { CreateCuponComponent } from "./components/cupones/create-cupon/create-cupon.component";
-import { EditCuponComponent } from "./components/cupones/edit-cupon/edit-cupon.component";
 import { ConfigComponent } from "./components/config/config.component";
-import { IndexVentasComponent } from "./components/ventas/index-ventas/index-ventas.component";
-import { CreateVentasComponent } from "./components/ventas/create-ventas/create-ventas.component";
-import { ShowVentasComponent } from "./components/ventas/show-ventas/show-ventas.component";
 import { EditInventarioComponent } from './components/almacenes/edit-inventario/edit-inventario.component';
 import { CreateInventarioComponent } from "./components/tiendas/create-inventario/create-inventario.component";
 import { IndexProveedorComponent } from './components/proveedores/index-proveedor/index-proveedor.component';
 import { InventarioProveedorComponent } from "./components/proveedores/inventario-proveedor/inventario-proveedor.component";
-import { IndexSolicitudComponent } from "./components/solicitud/index-solicitud/index-solicitud.component";
+import { CreateOrdenComponent } from "./components/ordenes/create-orden/create-orden.component";
 import { IndexOrdenComponent } from "./components/ordenes/index-orden/index-orden.component";
 import { InicioAlmacenComponent } from "./components/almacenes/inicio-almacen/inicio-almacen.component";
+import { IndexMateriaPrimaComponent } from "./components/materiasprimas/index-materia-prima/index-materia-prima.component";
+import { CreateMateriaPrimaComponent } from "./components/materiasprimas/create-materia-prima/create-materia-prima.component";
+import { EditMateriaPrimaComponent } from "./components/materiasprimas/edit-materia-prima/edit-materia-prima.component";
 
 const appRoute : Routes = [
     {path: '', redirectTo: 'login', pathMatch : 'full'},
@@ -38,7 +32,7 @@ const appRoute : Routes = [
     {path: 'clientes', component: IndexClientesComponent, canActivate:[AuthGuard]},
 
     {path: 'ordenes', component: IndexOrdenComponent, canActivate:[AuthGuard]},
-    {path: 'ordenes/create', component: IndexSolicitudComponent, canActivate:[AuthGuard]},
+    {path: 'ordenes/create', component: CreateOrdenComponent, canActivate:[AuthGuard]},
 
     {path: 'proveedores', component: IndexProveedorComponent, canActivate:[AuthGuard]},
     {path: 'proveedores/inventario/:idProveedor', component: InventarioProveedorComponent, canActivate:[AuthGuard]},
@@ -46,9 +40,10 @@ const appRoute : Routes = [
     {path: 'productos', component: IndexProductoComponent, canActivate:[AuthGuard]},
     {path: 'productos/create', component: CreateProductoComponent, canActivate:[AuthGuard]},
     {path: 'productos/edit/:id', component: EditProductoComponent, canActivate:[AuthGuard]},
-    {path: 'productos/variedades/:id', component: VariedadesProductoComponent, canActivate:[AuthGuard]},
-    {path: 'productos/inventario/:id', component: InventarioProductoComponent, canActivate:[AuthGuard]},
-    {path: 'productos/galeria/:id', component: GaleriaProductoComponent, canActivate:[AuthGuard]},
+
+    {path: 'materiasprimas', component: IndexMateriaPrimaComponent, canActivate:[AuthGuard]},
+    {path: 'materiasprimas/create', component: CreateMateriaPrimaComponent, canActivate:[AuthGuard]},
+    {path: 'materiasprimas/edit/:id', component: EditMateriaPrimaComponent, canActivate:[AuthGuard]},
 
     {path: 'almacenes', component: InicioAlmacenComponent, canActivate:[AuthGuard]},
     {path: 'almacenes/producto', component: IndexAlmacenComponent, canActivate:[AuthGuard]},
@@ -58,14 +53,6 @@ const appRoute : Routes = [
     {path: 'tiendas', component: IndexTiendaComponent, canActivate:[AuthGuard]},
     {path: 'tiendas/inventario/:idTienda', component: InventarioTiendaComponent, canActivate:[AuthGuard]},
     {path: 'tiendas/inventario/:idTienda/create', component: CreateInventarioComponent, canActivate:[AuthGuard]},
-
-    {path: 'cupones', component: IndexCuponComponent, canActivate:[AuthGuard]},
-    {path: 'cupones/create', component: CreateCuponComponent, canActivate:[AuthGuard]},
-    {path: 'cupones/edit/:id', component: EditCuponComponent, canActivate:[AuthGuard]},
-
-    {path: 'ventas', component: IndexVentasComponent, canActivate:[AuthGuard]},
-    {path: 'ventas/create', component: CreateVentasComponent, canActivate:[AuthGuard]},
-    {path: 'ventas/:id', component: ShowVentasComponent, canActivate:[AuthGuard]},
 
     {path: 'configuraciones', component: ConfigComponent, canActivate:[AuthGuard]},
     /* {path: '**', component: NotFoundComponent}, */

@@ -27,6 +27,11 @@ export class AdminService {
     return this._http.get(this.url + 'listar_clientes_tienda',{headers:headers});
   }
 
+  listar_categorias_producto(token:any):Observable<any>{
+    let headers = new HttpHeaders({'Content-Type':'application/json','Authorization':token});
+    return this._http.get(this.url + 'categoriaProducto/getAll',{headers:headers});
+  }
+
   obtener_info_profile_admin(token:any):Observable<any>{
     let headers = new HttpHeaders({'Content-Type':'application/json','token':token});
     return this._http.get(this.url + 'usuario/getAdminProfile',{headers:headers});
@@ -81,22 +86,19 @@ export class AdminService {
     return this._http.post(this.url+'orden/add',data,{headers:headers});
   }
 
-  registro_producto_admin(data:any,file:any,token:any):Observable<any>{
+  registro_producto_admin(data:any,token:any):Observable<any>{
     let headers = new HttpHeaders({'Authorization':token});
-    const fd = new FormData();
-    fd.append('titulo',data.titulo);
-    fd.append('etiquetas',JSON.stringify(data.etiquetas));
-    fd.append('precio',data.precio);
-    fd.append('precio_dolar',data.precio_dolar);
-    fd.append('peso',data.peso);
-    fd.append('sku',data.sku);
-    fd.append('descripcion',data.descripcion);
-    fd.append('contenido',data.contenido);
-    fd.append('categoria',data.categoria);
-    fd.append('visibilidad',data.visibilidad);
-    fd.append('tallas_str','');
-    fd.append('portada',file);
-    return this._http.post(this.url+'registro_producto_admin',fd,{headers:headers});
+    return this._http.post(this.url+'producto/add',data,{headers:headers});
+  }
+
+  registro_materia_prima_admin(data:any,token:any):Observable<any>{
+    let headers = new HttpHeaders({'Authorization':token});
+    return this._http.post(this.url+'materiaPrima/add',data,{headers:headers});
+  }
+
+  eliminar_producto(data:any,token:any):Observable<any>{
+    let headers = new HttpHeaders({'Content-Type':'application/json','token':token});
+    return this._http.delete(this.url+'producto/remove',{headers:headers, body: data});
   }
 
   listar_productos_admin(token:any):Observable<any>{
@@ -107,6 +109,11 @@ export class AdminService {
   listar_productos_paginate_admin(token:any, limit: number, page:number):Observable<any>{
     let headers = new HttpHeaders({'Content-Type':'application/json','Authorization':token});
     return this._http.get(this.url + 'producto/getAllPaginate?limit='+limit+'&page='+page,{headers:headers});
+  }
+
+  listar_materias_primas_paginate_admin(token:any, limit: number, page:number):Observable<any>{
+    let headers = new HttpHeaders({'Content-Type':'application/json','Authorization':token});
+    return this._http.get(this.url + 'materiaPrima/getAllPaginate?limit='+limit+'&page='+page,{headers:headers});
   }
 
   listar_almacenes_paginate_admin(token:any, limit: number, page:number):Observable<any>{
@@ -127,6 +134,11 @@ export class AdminService {
   obtener_producto_admin(id:any,token:any):Observable<any>{
     let headers = new HttpHeaders({'Content-Type':'application/json','Authorization':token});
     return this._http.get(this.url + 'producto/getById?id='+id,{headers:headers});
+  }
+
+  obtener_materia_prima_admin(id:any,token:any):Observable<any>{
+    let headers = new HttpHeaders({'Content-Type':'application/json','Authorization':token});
+    return this._http.get(this.url + 'materiaPrima/getById?id='+id,{headers:headers});
   }
 
   obtener_producto_almacen_admin(id:any,idProducto:any,token:any):Observable<any>{
@@ -169,6 +181,11 @@ export class AdminService {
     return this._http.get(this.url + 'categoriaProducto/getAll',{headers:headers});
   }
 
+  listar_categorias_materia_prima_admin(token:any):Observable<any>{
+    let headers = new HttpHeaders({'Content-Type':'application/json','Authorization':token});
+    return this._http.get(this.url + 'categoriaMateriaPrima/getAll',{headers:headers});
+  }
+
   eliminar_etiqueta_producto_admin(id:any,token:any):Observable<any>{
     let headers = new HttpHeaders({'Content-Type':'application/json','Authorization':token});
     return this._http.delete(this.url + 'eliminar_etiqueta_producto_admin/'+id,{headers:headers});
@@ -193,6 +210,23 @@ export class AdminService {
     }else{
       let headers = new HttpHeaders({'Content-Type':'application/json','Authorization':token});
       return this._http.put(this.url+'producto/update',data,{headers:headers});
+    }
+  }
+
+  actualizar_materia_prima_admin(data:any,token:any):Observable<any>{
+    if(data.portada){
+      let headers = new HttpHeaders({'Authorization':token});
+
+      const fd = new FormData();
+      fd.append('_id',data._id);
+      fd.append('nombre',data.nombre);
+      fd.append('descripcion',data.descripcion);
+      fd.append('idCategoria',data.idCategoria);
+
+      return this._http.put(this.url+'materiaPrima/update',fd,{headers:headers});
+    }else{
+      let headers = new HttpHeaders({'Content-Type':'application/json','Authorization':token});
+      return this._http.put(this.url+'materiaPrima/update',data,{headers:headers});
     }
   }
 

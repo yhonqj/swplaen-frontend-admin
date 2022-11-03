@@ -5,11 +5,11 @@ declare var iziToast: any;
 declare var $: any;
 
 @Component({
-  selector: 'app-create-producto',
-  templateUrl: './create-producto.component.html',
-  styleUrls: ['./create-producto.component.css']
+  selector: 'app-create-materia-prima',
+  templateUrl: './create-materia-prima.component.html',
+  styleUrls: ['./create-materia-prima.component.css']
 })
-export class CreateProductoComponent implements OnInit {
+export class CreateMateriaPrimaComponent implements OnInit {
 
   public producto: any = {
     categoriaProducto: ''
@@ -37,7 +37,7 @@ export class CreateProductoComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this._adminService.listar_categorias_producto_admin(this.token).subscribe(
+    this._adminService.listar_categorias_materia_prima_admin(this.token).subscribe(
       response => {
         this.categorias = response;
         console.log(response);
@@ -78,7 +78,7 @@ export class CreateProductoComponent implements OnInit {
 
       this.load_btn = true;
 
-      this._adminService.registro_producto_admin(this.producto, this.token).subscribe(
+      this._adminService.registro_materia_prima_admin(this.producto, this.token).subscribe(
         response => {
           if (response == undefined) {
             iziToast.show({

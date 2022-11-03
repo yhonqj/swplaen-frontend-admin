@@ -18,33 +18,19 @@ export class AppComponent {
   ngOnInit(): void {
 
     if(localStorage.getItem('token') != null){
-      // this._adminService.verificar_token(localStorage.getItem('token')).subscribe(
-      //   response=>{
-      //   },
-      //   error=>{
-      //     localStorage.removeItem('token');
-      //     localStorage.removeItem('_id');
-      //     localStorage.removeItem('user');
-      //     this._router.navigate(['/login']);
-      //   }
-      // );
-    } else {
       const token = localStorage.getItem('token');
       this._adminService.obtener_info_profile_admin(token).subscribe(
         response => {
-          localStorage.setItem('usuario',response.usuario);
-          localStorage.setItem('perfil',response.perfil);
+          localStorage.setItem('nombres',response.usuario.nombres);
+          localStorage.setItem('apellidos',response.usuario.apellidos);
         },
         error => {
           localStorage.removeItem('token');
-          localStorage.removeItem('usuario');
-          localStorage.removeItem('perfil');
+          localStorage.removeItem('nombres');
+          localStorage.removeItem('apellidos');
         }
       )
     }
-
-    
-    
   }
 
 }

@@ -7,11 +7,11 @@ declare var $:any;
 
 
 @Component({
-  selector: 'app-edit-producto',
-  templateUrl: './edit-producto.component.html',
-  styleUrls: ['./edit-producto.component.css']
+  selector: 'app-edit-materia-prima',
+  templateUrl: './edit-materia-prima.component.html',
+  styleUrls: ['./edit-materia-prima.component.css']
 })
-export class EditProductoComponent implements OnInit {
+export class EditMateriaPrimaComponent implements OnInit {
 
   public id = '';
   public load_data = false;
@@ -45,7 +45,7 @@ export class EditProductoComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this._adminService.listar_categorias_producto_admin(this.token).subscribe(
+    this._adminService.listar_categorias_materia_prima_admin(this.token).subscribe(
       response=>{
         this.categorias = response;
       }
@@ -56,7 +56,7 @@ export class EditProductoComponent implements OnInit {
         this.id = params['id'];
         console.log(this.id);
         this.load_data = true;
-        this._adminService.obtener_producto_admin(this.id,this.token).subscribe(
+        this._adminService.obtener_materia_prima_admin(this.id,this.token).subscribe(
           response=>{
            if(response == undefined){
             this.load_data = false;
@@ -97,7 +97,7 @@ export class EditProductoComponent implements OnInit {
       this.load_btn = true;
     
 
-      this._adminService.actualizar_producto_admin(data,this.token).subscribe(
+      this._adminService.actualizar_materia_prima_admin(data,this.token).subscribe(
         response=>{
           iziToast.show({
               title: 'SUCCESS',

@@ -19,26 +19,20 @@ import { IndexProveedorComponent } from './components/proveedores/index-proveedo
 import { IndexAlmacenComponent } from './components/almacenes/index-almacen/index-almacen.component';
 import { CreateProductoComponent } from './components/productos/create-producto/create-producto.component';
 import { EditProductoComponent } from './components/productos/edit-producto/edit-producto.component';
-import { VariedadesProductoComponent } from './components/productos/variedades-producto/variedades-producto.component';
-import { InventarioProductoComponent } from './components/productos/inventario-producto/inventario-producto.component';
-import { GaleriaProductoComponent } from './components/productos/galeria-producto/galeria-producto.component';
-import { IndexCuponComponent } from './components/cupones/index-cupon/index-cupon.component';
-import { CreateCuponComponent } from './components/cupones/create-cupon/create-cupon.component';
-import { EditCuponComponent } from './components/cupones/edit-cupon/edit-cupon.component';
 import { ConfigComponent } from './components/config/config.component';
-import { IndexVentasComponent } from './components/ventas/index-ventas/index-ventas.component';
 import { IndexTiendaComponent } from './components/tiendas/index-tienda/index-tienda.component';
-import { ShowVentasComponent } from './components/ventas/show-ventas/show-ventas.component';
-import { CreateVentasComponent } from './components/ventas/create-ventas/create-ventas.component';
 import { InventarioAlmacenComponent } from './components/almacenes/inventario-almacen/inventario-almacen.component';
 import { InventarioTiendaComponent } from './components/tiendas/inventario-tienda/inventario-tienda.component';
 import { EditInventarioComponent } from './components/almacenes/edit-inventario/edit-inventario.component';
 import { CreateInventarioComponent } from "./components/tiendas/create-inventario/create-inventario.component";
 import { InventarioProveedorComponent } from './components/proveedores/inventario-proveedor/inventario-proveedor.component';
-import { IndexSolicitudComponent } from './components/solicitud/index-solicitud/index-solicitud.component';
+import { CreateOrdenComponent } from './components/ordenes/create-orden/create-orden.component';
 import { IndexOrdenComponent } from './components/ordenes/index-orden/index-orden.component';
 import { InicioAlmacenComponent } from './components/almacenes/inicio-almacen/inicio-almacen.component';
 import { DatePipe } from '@angular/common';
+import { IndexMateriaPrimaComponent } from './components/materiasprimas/index-materia-prima/index-materia-prima.component';
+import { EditMateriaPrimaComponent } from './components/materiasprimas/edit-materia-prima/edit-materia-prima.component';
+import { CreateMateriaPrimaComponent } from './components/materiasprimas/create-materia-prima/create-materia-prima.component';
 
 @NgModule({
   declarations: [
@@ -55,23 +49,17 @@ import { DatePipe } from '@angular/common';
     InventarioTiendaComponent,
     CreateProductoComponent,
     EditProductoComponent,
-    VariedadesProductoComponent,
-    InventarioProductoComponent,
-    GaleriaProductoComponent,
-    IndexCuponComponent,
-    CreateCuponComponent,
-    EditCuponComponent,
     ConfigComponent,
-    IndexVentasComponent,
-    ShowVentasComponent,
-    CreateVentasComponent,
     EditInventarioComponent,
     CreateInventarioComponent,
     IndexProveedorComponent,
     InventarioProveedorComponent,
-    IndexSolicitudComponent,
+    CreateOrdenComponent,
     IndexOrdenComponent,
-    InicioAlmacenComponent
+    InicioAlmacenComponent,
+    IndexMateriaPrimaComponent,
+    EditMateriaPrimaComponent,
+    CreateMateriaPrimaComponent
   ],
   imports: [
     BrowserModule,

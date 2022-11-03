@@ -5,11 +5,11 @@ declare var iziToast:any;
 declare var $:any;
 
 @Component({
-  selector: 'app-index-producto',
-  templateUrl: './index-producto.component.html',
-  styleUrls: ['./index-producto.component.css']
+  selector: 'app-index-materia-prima',
+  templateUrl: './index-materia-prima.component.html',
+  styleUrls: ['./index-materia-prima.component.css']
 })
-export class IndexProductoComponent implements OnInit {
+export class IndexMateriaPrimaComponent implements OnInit {
 
   public productos :Array<any>= [];
   public productos_const  :Array<any>= [];
@@ -39,7 +39,7 @@ export class IndexProductoComponent implements OnInit {
 
   init_data(){
     this.load = true;
-    this._adminService.listar_productos_paginate_admin(this.token,this.pageSize, this.page).subscribe(
+    this._adminService.listar_materias_primas_paginate_admin(this.token,this.pageSize, this.page).subscribe(
       response=>{
         this.productos= response.results;
         this.load = false;
