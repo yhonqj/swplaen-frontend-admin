@@ -28,6 +28,8 @@ export class AppComponent {
       //     this._router.navigate(['/login']);
       //   }
       // );
+    } else {
+      const token = localStorage.getItem('token');
     }
 
     

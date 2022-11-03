@@ -50,8 +50,6 @@
                       <option value="" selected disabled>Seleccionar</option>
                       <option value="{{item._id}}" *ngFor="let item of variedades">{{item.nombre}}</option>
                     </select>
-
-
                     <input required class="form-control mb-3 mr-sm-4" min="0" type="number" placeholder="Cantidad"
                       name="cantidad" [(ngModel)]="producto.cantidad">
 
@@ -103,20 +101,6 @@
                               <li>
                                 <a class="dropdown-item" [routerLink]="['editar',item.producto._id]">Editar</a>
                               </li>
-                              <li>
-                                <a class="dropdown-item"
-                                  [routerLink]="['/productos/variedades',item._id]">Variedades</a>
-                              </li>
-                              <li>
-                                <a class="dropdown-item"
-                                  [routerLink]="['/productos/inventario',item._id]">Inventario</a>
-                              </li>
-                              <li>
-                                <a class="dropdown-item" [routerLink]="['/productos/galeria',item._id]">Galería</a>
-                              </li>
-
-                              <a *ngIf="item.estado == 'Edicion'" class="dropdown-item" style="cursor: pointer;"
-                                data-toggle="modal" [attr.data-target]="'#vs-'+item._id">Mostrar producto</a>
                             </ul>
                           </div>
 
