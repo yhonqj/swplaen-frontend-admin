@@ -30,6 +30,17 @@ export class AppComponent {
       // );
     } else {
       const token = localStorage.getItem('token');
+      this._adminService.obtener_info_profile_admin(token).subscribe(
+        response => {
+          localStorage.setItem('usuario',response.usuario);
+          localStorage.setItem('perfil',response.perfil);
+        },
+        error => {
+          localStorage.removeItem('token');
+          localStorage.removeItem('usuario');
+          localStorage.removeItem('perfil');
+        }
+      )
     }
 
     

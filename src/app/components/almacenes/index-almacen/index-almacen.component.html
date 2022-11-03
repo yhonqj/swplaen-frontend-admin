@@ -43,19 +43,6 @@
           <div class="card-body">
             <div class="row">
               <div class="col">
-                <div class="input-group input-group-merge ">
-                  <input type="text" class="form-control form-control-appended" placeholder="Buscar producto"
-                    name="filtro" [(ngModel)]="filtro">
-                  <div class="input-group-append">
-                    <button class="btn btn-primary">
-                      Buscar
-                    </button>
-                  </div>
-                </div>
-              </div>
-              <div class="col">
-                <a class="btn btn-primary" [routerLink]="['/productos/create']" routerLinkActive="router-link-active"
-                  style="cursor: pointer;">Nuevo producto</a>
                 <div id="modalCentered" class="modal fade" tabindex="-1" role="dialog"
                   aria-labelledby="exampleModalCenterTitle" style="display: none;" aria-hidden="true">
                   <div class="modal-dialog modal-dialog-centered" role="document" style="max-width: 600px;">
@@ -163,16 +150,7 @@
 
                       <ul class="dropdown-menu" aria-labelledby="dropdownMenuButtonAlias">
                         <li>
-                          <a class="dropdown-item" [routerLink]="['/productos/edit',item._id]">Editar</a>
-                        </li>
-                        <li>
-                          <a class="dropdown-item" [routerLink]="['/productos/variedades',item._id]">Variedades</a>
-                        </li>
-                        <li>
-                          <a class="dropdown-item" [routerLink]="['/almacenes/inventario', item._id]">Inventario</a>
-                        </li>
-                        <li>
-                          <a class="dropdown-item" [routerLink]="['/productos/galeria',item._id]">Galería</a>
+                          <a class="dropdown-item" [routerLink]="['/almacenes/materiaPrima/inventario', item._id]">Inventario</a>
                         </li>
 
                         <a *ngIf="item.estado == 'Edicion'" class="dropdown-item" style="cursor: pointer;"
