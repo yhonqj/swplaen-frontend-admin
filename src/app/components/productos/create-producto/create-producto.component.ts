@@ -105,6 +105,14 @@ export class CreateProductoComponent implements OnInit {
           }
         },
         error => {
+          iziToast.show({
+            title: 'ERROR',
+            titleColor: '#FF0000',
+            color: '#FFF',
+            class: 'text-danger',
+            position: 'topRight',
+            message: error.error.message
+          });
           this.load_btn = false;
         }
       );

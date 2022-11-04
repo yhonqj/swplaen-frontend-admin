@@ -21,6 +21,7 @@ export class InventarioAlmacenComponent implements OnInit {
   public arr_inventario: Array<any>=[];
   public producto : any = {
     idProducto: '',
+    fecha: ''
   };
 
   public load_btn = false;
@@ -40,6 +41,7 @@ export class InventarioAlmacenComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    console.log(this.producto.fecha)
     this._route.params.subscribe(
       params=>{
         this.id = params['idAlmacen'];
@@ -79,6 +81,7 @@ export class InventarioAlmacenComponent implements OnInit {
         idAlmacen: this.almacen._id,
         idProducto: this.producto.idProducto,
         stock: inventarioForm.value.cantidad,
+        fecha: inventarioForm.value.fecha,
       }
 
       console.log(data);

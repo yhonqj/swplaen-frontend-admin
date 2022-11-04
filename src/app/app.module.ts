@@ -33,6 +33,8 @@ import { DatePipe } from '@angular/common';
 import { IndexMateriaPrimaComponent } from './components/materiasprimas/index-materia-prima/index-materia-prima.component';
 import { EditMateriaPrimaComponent } from './components/materiasprimas/edit-materia-prima/edit-materia-prima.component';
 import { CreateMateriaPrimaComponent } from './components/materiasprimas/create-materia-prima/create-materia-prima.component';
+import { EditProveedorComponent } from './components/proveedores/edit-proveedor/edit-proveedor.component';
+import { CreateProveedorComponent } from './components/proveedores/create-proveedor/create-proveedor.component';
 
 @NgModule({
   declarations: [
@@ -59,7 +61,9 @@ import { CreateMateriaPrimaComponent } from './components/materiasprimas/create-
     InicioAlmacenComponent,
     IndexMateriaPrimaComponent,
     EditMateriaPrimaComponent,
-    CreateMateriaPrimaComponent
+    CreateMateriaPrimaComponent,
+    EditProveedorComponent,
+    CreateProveedorComponent
   ],
   imports: [
     BrowserModule,

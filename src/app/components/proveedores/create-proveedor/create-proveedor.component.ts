@@ -5,13 +5,13 @@ declare var iziToast: any;
 declare var $: any;
 
 @Component({
-  selector: 'app-create-materia-prima',
-  templateUrl: './create-materia-prima.component.html',
-  styleUrls: ['./create-materia-prima.component.css']
+  selector: 'app-create-proveedor',
+  templateUrl: './create-proveedor.component.html',
+  styleUrls: ['./create-proveedor.component.css']
 })
-export class CreateMateriaPrimaComponent implements OnInit {
+export class CreateProveedorComponent implements OnInit {
 
-  public producto: any = {
+  public proveedor: any = {
     categoriaProducto: ''
   };
   public imgSelect: any | ArrayBuffer = 'assets/img/01.jpg';
@@ -37,7 +37,7 @@ export class CreateMateriaPrimaComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this._adminService.listar_categorias_materia_prima_admin(this.token).subscribe(
+    this._adminService.listar_categorias_producto_admin(this.token).subscribe(
       response => {
         this.categorias = response;
         console.log(response);
@@ -78,7 +78,7 @@ export class CreateMateriaPrimaComponent implements OnInit {
 
       this.load_btn = true;
 
-      this._adminService.registro_materia_prima_admin(this.producto, this.token).subscribe(
+      this._adminService.registro_proveedor_admin(this.proveedor, this.token).subscribe(
         response => {
           if (response == undefined) {
             iziToast.show({
@@ -97,11 +97,11 @@ export class CreateMateriaPrimaComponent implements OnInit {
               color: '#FFF',
               class: 'text-success',
               position: 'topRight',
-              message: 'Se registro correctamente el nuevo producto.'
+              message: 'Se registro correctamente el nuevo proveedor.'
             });
             this.load_btn = false;
 
-            this._router.navigate(['/materiasprimas']);
+            this._router.navigate(['/proveedores']);
           }
         },
         error => {

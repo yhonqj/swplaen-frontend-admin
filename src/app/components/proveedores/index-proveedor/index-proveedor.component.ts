@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AdminService } from 'src/app/service/admin.service';
+declare var iziToast:any;
 
 @Component({
   selector: 'app-index-proveedor',
@@ -26,13 +27,48 @@ export class IndexProveedorComponent implements OnInit {
     );
   }
 
-  filtrar_cliente(){
-    if(this.filtro){
-      var term = new RegExp(this.filtro.toString().trim() , 'i');
-      this.proveedores = this.clientes_const.filter(item=>term.test(item.nombres)||term.test(item.apellidos)||term.test(item.email)||term.test(item.dni)||term.test(item.telefono)||term.test(item._id));
-    }else{
-      this.proveedores = this.clientes_const;
+  eliminar_proveedor(id: any){
+    const data = {
+      id
     }
+    this._adminService.eliminar_proveedor(data, this.token).subscribe(
+      (response: any) => {
+        if (response == undefined) {
+          iziToast.show({
+            title: 'ERROR',
+            titleColor: '#FF0000',
+            color: '#FFF',
+            class: 'text-danger',
+            position: 'topRight',
+            message: response.message
+          });
+        } else {
+          iziToast.show({
+            title: 'SUCCESS',
+            titleColor: '#1DC74C',
+            color: '#FFF',
+            class: 'text-success',
+            position: 'topRight',
+            message: 'Se eliminó correctamente el proveedor'
+          });
+          this._adminService.listar_proveedores_paginate(this.token, this.limit,this.page).subscribe(
+            response=>{ 
+              this.proveedores = response.results;
+            }
+          );
+        }
+      },
+      (error: any) => {
+        iziToast.show({
+          title: 'ERROR',
+          titleColor: '#FF0000',
+          color: '#FFF',
+          class: 'text-danger',
+          position: 'topRight',
+          message: error.error.message
+        });
+      }
+    );
   }
 
 }
