@@ -19,7 +19,7 @@ export class AdminService {
 
   login_admin(data:any):Observable<any>{
     let headers = new HttpHeaders().set('Content-Type','application/json');
-    return this._http.post(this.url + 'usuario/loginColaborador',data,{headers:headers});
+    return this._http.post(this.url + 'usuario/loginAdmin',data,{headers:headers});
   }
 
   listar_clientes_tienda(token:any):Observable<any>{
