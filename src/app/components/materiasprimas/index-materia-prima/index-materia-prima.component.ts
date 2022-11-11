@@ -51,7 +51,7 @@ export class IndexMateriaPrimaComponent implements OnInit {
     const data = {
       id
     }
-    this._adminService.eliminar_producto(data, this.token).subscribe(
+    this._adminService.eliminar_materia_prima(data, this.token).subscribe(
       (response: any) => {
         if (response == undefined) {
           iziToast.show({
@@ -70,7 +70,7 @@ export class IndexMateriaPrimaComponent implements OnInit {
             color: '#FFF',
             class: 'text-success',
             position: 'topRight',
-            message: 'Se eliminó correctamente el nuevo producto.'
+            message: 'Se eliminó correctamente la materia prima'
           });
           this.load_btn = false;
           this.init_data();

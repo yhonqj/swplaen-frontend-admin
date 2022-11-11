@@ -64,11 +64,12 @@ export class LoginComponent implements OnInit {
             
           },
           error=>{
+            console.log(error)
             iziToast.show({
-                title: 'ERROR SERVER',
+                title: 'ERROR',
                 class:'iziToast-danger',
                 position: 'topRight',
-                message: 'Ocurrió un error en el servidor, intente mas nuevamente.'
+                message: error.error.message
             });
           }
         );

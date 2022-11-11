@@ -1,122 +1,117 @@
 <app-sidebar></app-sidebar>
 
 <div class="main-content">
-    <div class="container-fluid">
-        <div class="row justify-content-center">
-          <div class="col-11">
+  <div class="container-fluid">
+    <div class="row justify-content-center">
+      <div class="col-11">
 
-            <!-- Header -->
-            <div class="header mt-md-5">
-              <div class="header-body">
-                <div class="row align-items-center">
-                  <div class="col">
+        <!-- Header -->
+        <div class="header mt-md-5">
+          <div class="header-body">
+            <div class="row align-items-center">
+              <div class="col">
 
-                    <!-- Pretitle -->
-                    <h6 class="header-pretitle">
-                      Módulo
-                    </h6>
-
-                    <!-- Title -->
-                    <h1 class="header-title">
-                        Proveedores
-                    </h1>
-
-                  </div>
-                </div> <!-- / .row -->
-      
-              </div>
-            </div>
-
-            <!-- Alert -->
-
-
-            <!-- Card -->
-            <div class="card">
-              <div class="card-header">
+                <!-- Pretitle -->
+                <h6 class="header-pretitle">
+                  Módulo
+                </h6>
 
                 <!-- Title -->
-                <h4 class="card-header-title">
-                  Mostrando todos tus proveedores
-                </h4>
+                <h1 class="header-title">
+                  Proveedores
+                </h1>
 
               </div>
-              <div class="card-body">
-                <div class="input-group input-group-merge">
-                    <input type="text" class="form-control form-control-appended" placeholder="Buscar cliente" name="filtro" [(ngModel)]="filtro">
-                    <div class="input-group-append">
-                      <button class="btn btn-primary" (click)="filtrar_cliente()">
-                          Buscar
-                      </button>
-                    </div>
-                  </div>
-              </div>
-              <div class="table-responsive">
-                <table class="table table-sm table-nowrap card-table">
-                  <thead>
-                    <tr>
-                      <th>Apellidos</th>
-                      <th>Nombres</th>
-                      <th>Correo</th>
-                      <th>Celular</th>
-                      <th>Ruc</th>
-                      <th>Razón Social</th>
-                      <th>Opciones</th>
-                    </tr>
-                  </thead>
-                  <tbody class="font-size-base">
-                    <tr *ngFor="let item of proveedores | slice: (page-1) * limit : (page-1) * limit + limit">
-                      <td>
-                        {{item.apellidos}}
-                      </td>
-                      <td>
-                        {{item.nombres}}
-                      </td>
-                      <td>
-                        {{item.correo}}
-                      </td>
-                      <td>
-                        {{item.celular}}
-                      </td>
-                      <td>
-                        {{item.ruc}}
-                      <td>
-                        {{item.razonSocial}}
-                      </td>
-                      <div class="dropdown">
-                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButtonAlias" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                          Opciones
-                        </button>
-                      
-                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButtonAlias">
-                          <li>
-                            <a class="dropdown-item" [routerLink]="['/cliente/edit',item._id]">Editar</a>
-                          </li>
-                          <li>
-                            <a class="dropdown-item" [routerLink]="['/cliente/elimina',item._id]">Eliminar</a>
-                          </li>
-                          <li>
-                            <a class="dropdown-item" [routerLink]="['/proveedores/inventario',item._id]">Inventario</a>
-                          </li>
-                        </ul>
-                      </div>
-                    </tr>
-                   
-                  </tbody>
-                </table>
-                
-              </div>
-
-            </div>
-                <ngb-pagination *ngIf="proveedores.length >= 1"
-                        [(page)]="page"
-                        [pageSize]="limit"
-                        [maxSize]="10"
-                        [rotate]="true" [boundaryLinks]="true"
-                [collectionSize]="proveedores.length"></ngb-pagination>
-  
-            <br>
+            </div> <!-- / .row -->
 
           </div>
-        </div> <!-- / .row -->
+        </div>
+
+        <!-- Alert -->
+
+
+        <!-- Card -->
+        <div class="card">
+          <div class="card-header">
+
+            <!-- Title -->
+            <h4 class="card-header-title">
+              Mostrando todos tus proveedores
+            </h4>
+
+          </div>
+          <div class="card-body">
+            <div class="row">
+              <div class="col">
+                <a class="btn btn-success" [routerLink]="['/proveedores/create']" routerLinkActive="router-link-active"
+                  style="cursor: pointer;">Nuevo proveedor</a>
+              </div>
+            </div>
+          </div>
+          <div class="table-responsive">
+            <table class="table table-sm table-nowrap card-table">
+              <thead>
+                <tr>
+                  <th>Apellidos</th>
+                  <th>Nombres</th>
+                  <th>Correo</th>
+                  <th>Celular</th>
+                  <th>Ruc</th>
+                  <th>Razón Social</th>
+                  <th>Opciones</th>
+                </tr>
+              </thead>
+              <tbody class="font-size-base">
+                <tr *ngFor="let item of proveedores | slice: (page-1) * limit : (page-1) * limit + limit">
+                  <td>
+                    {{item.apellidos}}
+                  </td>
+                  <td>
+                    {{item.nombres}}
+                  </td>
+                  <td>
+                    {{item.correo}}
+                  </td>
+                  <td>
+                    {{item.celular}}
+                  </td>
+                  <td>
+                    {{item.ruc}}
+                  <td>
+                    {{item.razonSocial}}
+                  </td>
+                  <div class="dropdown">
+                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButtonAlias"
+                      data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      Opciones
+                    </button>
+
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButtonAlias">
+                      <li>
+                        <a class="dropdown-item" [routerLink]="['/proveedores/edit',item._id]">Editar</a>
+                      </li>
+                      <li>
+                        <button class="dropdown-item" href="" (click)="eliminar_proveedor(item._id)">Eliminar</button>
+                      </li>
+                      <li>
+                        <a class="dropdown-item" [routerLink]="['/proveedores/inventario',item._id]">Inventario</a>
+                      </li>
+                    </ul>
+                  </div>
+                </tr>
+
+              </tbody>
+            </table>
+
+          </div>
+
+        </div>
+        <ngb-pagination *ngIf="proveedores.length >= 1" [(page)]="page" [pageSize]="limit" [maxSize]="10"
+          [rotate]="true" [boundaryLinks]="true" [collectionSize]="proveedores.length"></ngb-pagination>
+
+        <br>
+
       </div>
+    </div> <!-- / .row -->
+  </div>
 </div>

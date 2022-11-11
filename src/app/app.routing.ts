@@ -22,6 +22,8 @@ import { InicioAlmacenComponent } from "./components/almacenes/inicio-almacen/in
 import { IndexMateriaPrimaComponent } from "./components/materiasprimas/index-materia-prima/index-materia-prima.component";
 import { CreateMateriaPrimaComponent } from "./components/materiasprimas/create-materia-prima/create-materia-prima.component";
 import { EditMateriaPrimaComponent } from "./components/materiasprimas/edit-materia-prima/edit-materia-prima.component";
+import { EditProveedorComponent } from "./components/proveedores/edit-proveedor/edit-proveedor.component";
+import { CreateProveedorComponent } from "./components/proveedores/create-proveedor/create-proveedor.component";
 
 const appRoute : Routes = [
     {path: '', redirectTo: 'login', pathMatch : 'full'},
@@ -35,6 +37,8 @@ const appRoute : Routes = [
     {path: 'ordenes/create', component: CreateOrdenComponent, canActivate:[AuthGuard]},
 
     {path: 'proveedores', component: IndexProveedorComponent, canActivate:[AuthGuard]},
+    {path: 'proveedores/create', component: CreateProveedorComponent, canActivate:[AuthGuard]},
+    {path: 'proveedores/edit/:id', component: EditProveedorComponent, canActivate:[AuthGuard]},
     {path: 'proveedores/inventario/:idProveedor', component: InventarioProveedorComponent, canActivate:[AuthGuard]},
 
     {path: 'productos', component: IndexProductoComponent, canActivate:[AuthGuard]},
