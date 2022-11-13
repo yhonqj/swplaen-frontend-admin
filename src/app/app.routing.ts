@@ -24,6 +24,8 @@ import { CreateMateriaPrimaComponent } from "./components/materiasprimas/create-
 import { EditMateriaPrimaComponent } from "./components/materiasprimas/edit-materia-prima/edit-materia-prima.component";
 import { EditProveedorComponent } from "./components/proveedores/edit-proveedor/edit-proveedor.component";
 import { CreateProveedorComponent } from "./components/proveedores/create-proveedor/create-proveedor.component";
+import { MovimientoAlmacenComponent } from "./components/almacenes/movimiento-almacen/movimiento-almacen.component";
+import { AuthAdminGuard } from "./guards/authAdmin.guard";
 
 const appRoute : Routes = [
     {path: '', redirectTo: 'login', pathMatch : 'full'},
@@ -41,7 +43,7 @@ const appRoute : Routes = [
     {path: 'proveedores/edit/:id', component: EditProveedorComponent, canActivate:[AuthGuard]},
     {path: 'proveedores/inventario/:idProveedor', component: InventarioProveedorComponent, canActivate:[AuthGuard]},
 
-    {path: 'productos', component: IndexProductoComponent, canActivate:[AuthGuard]},
+    {path: 'productos', component: IndexProductoComponent, canActivate:[AuthGuard,AuthAdminGuard]},
     {path: 'productos/create', component: CreateProductoComponent, canActivate:[AuthGuard]},
     {path: 'productos/edit/:id', component: EditProductoComponent, canActivate:[AuthGuard]},
 
@@ -53,6 +55,7 @@ const appRoute : Routes = [
     {path: 'almacenes/producto', component: IndexAlmacenComponent, canActivate:[AuthGuard]},
     {path: 'almacenes/producto/inventario/:idAlmacen', component: InventarioAlmacenComponent, canActivate:[AuthGuard]},
     {path: 'almacenes/producto/inventario/:idAlmacen/editar/:id', component: EditInventarioComponent, canActivate:[AuthGuard]},
+    {path: 'almacenes/producto/inventario/:idAlmacen/movimientos/:id', component: MovimientoAlmacenComponent, canActivate:[AuthGuard]},
 
     {path: 'tiendas', component: IndexTiendaComponent, canActivate:[AuthGuard]},
     {path: 'tiendas/inventario/:idTienda', component: InventarioTiendaComponent, canActivate:[AuthGuard]},

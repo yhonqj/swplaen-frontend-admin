@@ -7,7 +7,7 @@ import { AdminService } from '../service/admin.service';
 @Injectable({
   providedIn: 'root'
 })
-export class AuthGuard implements CanActivate {
+export class AuthAlmaceneroGuard implements CanActivate {
   constructor(
     private _router:Router,
     private _adminService:AdminService
@@ -16,10 +16,12 @@ export class AuthGuard implements CanActivate {
   }
 
   canActivate():any{
-    let access:any = this._adminService.isAuthenticate();
-    if(!access){
-      this._router.navigate(['login']);
+    let accessAdmin: boolean = this._adminService.isAlmacenero();
+    if (!accessAdmin){
+      return false;
+      
     }
+
     return true;
   }
   

@@ -1,3 +1,4 @@
+import { DatePipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
@@ -34,20 +35,22 @@ export class InventarioAlmacenComponent implements OnInit {
 
   constructor(
     private _route: ActivatedRoute,
-    private _adminService: AdminService
+    private _adminService: AdminService,
+    private datePipe: DatePipe
   ) { 
     this.token = localStorage.getItem('token');
 
   }
 
   ngOnInit(): void {
+    this.producto.fecha = this.datePipe.transform(Date.now(), 'yyyy-MM-dd');
     console.log(this.producto.fecha)
     this._route.params.subscribe(
       params=>{
         this.id = params['idAlmacen'];
 
         this.load = true;
-        this.listar_variedades();
+        this.listar_productos();
         this._adminService.obtener_almacen_admin(this.id,this.token).subscribe(
           response=>{
            if(response == undefined){
@@ -66,7 +69,7 @@ export class InventarioAlmacenComponent implements OnInit {
     );
   }
 
-  listar_variedades(){
+  listar_productos(){
     this._adminService.listar_productos_admin(this.token).subscribe(
       response=>{
         this.variedades = response;

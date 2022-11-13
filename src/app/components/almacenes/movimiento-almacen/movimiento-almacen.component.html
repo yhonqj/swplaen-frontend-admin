@@ -1,0 +1,162 @@
+<app-sidebar></app-sidebar>
+
+<div class="main-content">
+  <div class="container-fluid">
+    <div class="row justify-content-center">
+      <div class="col-11">
+
+        <!-- Header -->
+        <div class="header mt-md-5">
+          <div class="header-body">
+            <div class="row align-items-center">
+              <div class="col">
+
+                <!-- Pretitle -->
+                <h6 class="header-pretitle">
+                  Módulo
+                </h6>
+
+                <!-- Title -->
+                <h1 class="header-title">
+                  Almacenes
+                </h1>
+
+              </div>
+            </div> <!-- / .row -->
+
+          </div>
+        </div>
+
+        <!-- Alert -->
+
+
+        <ng-container *ngIf="!load">
+          <!-- Card -->
+          <div *ngIf="almacen!=undefined" class="card">
+            <div class="card-header">
+
+              <!-- Title -->
+              <h4 class="card-header-title">
+                Movimientos del Producto en el Almacén
+              </h4>
+
+            </div>
+            <div class="card-body">
+              <ng-container *ngIf="!load">
+                <div class="table-responsive">
+                  <table class="table table-sm table-nowrap card-table">
+                    <thead>
+                      <tr>
+                        <th>Cantidad</th>
+                        <th>Detalle</th>
+                        <th>Fecha</th>
+                        <th>Tipo de Movimiento</th>
+                      </tr>
+                    </thead>
+                    <tbody class="font-size-base" *ngIf="!load">
+                      <tr
+                        *ngFor="let item of inventarios">
+                        <td>
+                          {{item.cantidad}}
+                        </td>
+                        <td>
+                          {{item.detalle}}
+                        </td>
+                        <td>
+                          {{item.fechaString}}
+                        </td>
+                        <td>
+                          {{item.tipoMovimientoString}}
+                        </td>
+                      </tr>
+
+                    </tbody>
+                    <tbody *ngIf="load">
+                      <tr>
+                        <td colspan="5" class="text-center">
+                          <div class="spinner-border text-primary" role="status">
+                            <span class="visually-hidden"></span>
+                          </div>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+
+              </ng-container>
+
+              <div class="card-footer">
+                <a class="btn btn-warning btn-shadow mr-3" [routerLink]="['/almacenes/producto/inventario',id]"
+                  routerLinkActive="router-link-active">Regresar</a>
+              </div>
+              <ng-container *ngIf="load">
+                <div class="card-body">
+                  <div class="row">
+                    <div class="col-12 text-center">
+                      <div class="spinner-border" style="width: 3rem; height: 3rem;" role="status">
+                        <span class="visually-hidden"></span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </ng-container>
+            </div>
+
+
+          </div>
+          <ng-container *ngIf="almacen == undefined">
+            <div class="card">
+              <div class="card-body">
+                <div class="row justify-content-center">
+                  <div class="col-12 col-md-5 col-xl-4 my-5">
+
+                    <div class="text-center">
+
+                      <!-- Preheading -->
+                      <h6 class="text-uppercase text-muted mb-4">
+                        404 error
+                      </h6>
+
+                      <!-- Heading -->
+                      <h1 class="display-4 mb-3">
+                        There’s no page here 😭
+                      </h1>
+
+                      <!-- Subheading -->
+                      <p class="text-muted mb-4">
+                        Looks like you ended up here by accident?
+                      </p>
+
+                      <!-- Button -->
+                      <a [routerLink]="['/productos']" class="btn btn-lg btn-primary">
+                        Regresar a productos
+                      </a>
+
+                    </div>
+
+                  </div>
+                </div>
+              </div>
+            </div>
+          </ng-container>
+        </ng-container>
+        <ng-container *ngIf="load">
+          <div class="card">
+            <div class="card-body">
+              <div class="row">
+                <div class="col-12 text-center">
+                  <div class="spinner-border text-primary" role="status">
+                    <span class="visually-hidden"></span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </ng-container>
+
+
+
+      </div>
+    </div> <!-- / .row -->
+  </div>
+</div>

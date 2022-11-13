@@ -23,11 +23,13 @@ export class AppComponent {
         response => {
           localStorage.setItem('nombres',response.usuario.nombres);
           localStorage.setItem('apellidos',response.usuario.apellidos);
+          localStorage.setItem('tipoUsuario', response.usuario.tipoUsuario);
         },
         error => {
           localStorage.removeItem('token');
           localStorage.removeItem('nombres');
           localStorage.removeItem('apellidos');
+          localStorage.removeItem('tipoUsuario');
         }
       )
     }

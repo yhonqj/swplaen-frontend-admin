@@ -27,6 +27,11 @@ export class AdminService {
     return this._http.get(this.url + 'listar_clientes_tienda', { headers: headers });
   }
 
+  listar_tipo_movimientos(token: any): Observable<any> {
+    let headers = new HttpHeaders({ 'Content-Type': 'application/json', 'Authorization': token });
+    return this._http.get(this.url + 'tipoMovimiento/getAll', { headers: headers });
+  }
+
   listar_categorias_producto(token: any): Observable<any> {
     let headers = new HttpHeaders({ 'Content-Type': 'application/json', 'Authorization': token });
     return this._http.get(this.url + 'categoriaProducto/getAll', { headers: headers });
@@ -169,6 +174,12 @@ export class AdminService {
   obtener_almacen_admin(id: any, token: any): Observable<any> {
     let headers = new HttpHeaders({ 'Content-Type': 'application/json', 'Authorization': token });
     return this._http.get(this.url + 'almacen/getById?id=' + id, { headers: headers });
+  }
+
+  
+  obtener_movimientos_producto_almacen_admin(id: any,idProducto: any,limit: number,page:number, token: any): Observable<any> {
+    let headers = new HttpHeaders({ 'Content-Type': 'application/json', 'Authorization': token });
+    return this._http.get(this.url + 'almacen/getMovimientosProductoByIdPaginate?id=' + id+ "&idProducto="+idProducto+"&limit="+limit+"&page="+page, { headers: headers });
   }
 
   obtener_tienda_admin(id: any, token: any): Observable<any> {
@@ -385,6 +396,21 @@ export class AdminService {
     }
 
     return true;
+  }
+
+  isAdmin() {
+    const tipoUsuario: any = localStorage.getItem('tipoUsuario');
+    return tipoUsuario == 1;
+  }
+
+  isAlmacenero() {
+    const tipoUsuario: any = localStorage.getItem('tipoUsuario');
+    return tipoUsuario == 2;
+  }
+
+  isProveedor() {
+    const tipoUsuario: any = localStorage.getItem('tipoUsuario');
+    return tipoUsuario == 3;
   }
 
   obtener_ventas_admin(token: any): Observable<any> {

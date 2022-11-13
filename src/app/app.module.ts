@@ -35,6 +35,7 @@ import { EditMateriaPrimaComponent } from './components/materiasprimas/edit-mate
 import { CreateMateriaPrimaComponent } from './components/materiasprimas/create-materia-prima/create-materia-prima.component';
 import { EditProveedorComponent } from './components/proveedores/edit-proveedor/edit-proveedor.component';
 import { CreateProveedorComponent } from './components/proveedores/create-proveedor/create-proveedor.component';
+import { MovimientoAlmacenComponent } from './components/almacenes/movimiento-almacen/movimiento-almacen.component';
 
 @NgModule({
   declarations: [
@@ -63,7 +64,8 @@ import { CreateProveedorComponent } from './components/proveedores/create-provee
     EditMateriaPrimaComponent,
     CreateMateriaPrimaComponent,
     EditProveedorComponent,
-    CreateProveedorComponent
+    CreateProveedorComponent,
+    MovimientoAlmacenComponent
   ],
   imports: [
     BrowserModule,

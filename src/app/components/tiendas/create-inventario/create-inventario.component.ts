@@ -1,3 +1,4 @@
+import { DatePipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AdminService } from 'src/app/service/admin.service';
@@ -16,6 +17,7 @@ export class CreateInventarioComponent implements OnInit {
   public productos: Array<any> = [];
   public almacen: any ={_id:''};
   public cantidad: number = 0;
+  public fecha: string = '';
   public precio: number = 0;
   public producto: any = { idProducto: ''};
   public stock: number = 0;
@@ -33,7 +35,8 @@ export class CreateInventarioComponent implements OnInit {
   constructor(
     private _route: ActivatedRoute,
     private _adminService:AdminService,
-    private _router:Router
+    private _router:Router,
+    private datePipe: DatePipe
   ) { 
     this.config = {
       height: 500
@@ -41,6 +44,7 @@ export class CreateInventarioComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.fecha = this.datePipe.transform(Date.now(), 'yyyy-MM-dd') || "";
     this._route.params.subscribe(
       params=>{
         this.idTienda = params['idTienda'];
@@ -139,6 +143,7 @@ export class CreateInventarioComponent implements OnInit {
           idProducto: this.producto.idProducto,
           idAlmacen: this.almacen._id,
           cantidad: this.cantidad,
+          fecha: this.fecha,
           idTienda: this.idTienda
         }
         this._adminService.registro_producto_tienda_admin(data,this.token).subscribe(
