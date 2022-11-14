@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, UrlTree } from '@angular/router';
 import { Observable } from 'rxjs';
 import { AdminService } from '../service/admin.service';
+import { GLOBAL } from '../service/GLOBAL';
 
 
 @Injectable({
@@ -20,6 +21,7 @@ export class AuthGuard implements CanActivate {
     if(!access){
       this._router.navigate(['login']);
     }
+
     return true;
   }
   

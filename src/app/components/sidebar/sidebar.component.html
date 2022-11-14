@@ -77,32 +77,37 @@
 
         <!-- Navigation -->
         <ul class="navbar-nav mb-md-4">
-          <li class="nav-item">
+          <li *ngIf="GLOBAL.administrador" class="nav-item">
             <a class="nav-link " [routerLink]="['/almacenes']" routerLinkActive="active" >
               <i class="fe fe-shopping-bag"></i> Almacenes
             </a>
           </li>
-          <li class="nav-item">
+          <li *ngIf="GLOBAL.administrador" class="nav-item">
             <a class="nav-link " [routerLink]="['/tiendas']" routerLinkActive="active" >
               <i class="fe fe-shopping-bag"></i> Tiendas
             </a>
           </li>
-          <li class="nav-item">
+          <li *ngIf="GLOBAL.administrador" class="nav-item">
             <a class="nav-link " [routerLink]="['/productos']" routerLinkActive="active" >
               <i class="fe fe-shopping-bag"></i> Productos
             </a>
           </li>
-          <li class="nav-item">
+          <li *ngIf="GLOBAL.administrador" class="nav-item">
             <a class="nav-link " [routerLink]="['/materiasprimas']" routerLinkActive="active" >
               <i class="fe fe-shopping-bag"></i> Materias Primas
             </a>
           </li>
-          <li class="nav-item">
+          <li *ngIf="GLOBAL.proveedor" class="nav-item">
+            <a class="nav-link " [routerLink]="['/inventario']" routerLinkActive="active" >
+              <i class="fe fe-shopping-bag"></i> Inventario
+            </a>
+          </li>
+          <li *ngIf="GLOBAL.administrador" li class="nav-item">
             <a class="nav-link " [routerLink]="['/proveedores']" routerLinkActive="active" >
               <i class="fe fe-shopping-bag"></i> Proveedores
             </a>
           </li>
-          <li class="nav-item">
+          <li *ngIf="GLOBAL.administrador" class="nav-item">
             <a class="nav-link " [routerLink]="['/ordenes']" routerLinkActive="active" >
               <i class="fe fe-shopping-bag"></i> Órdenes
             </a>

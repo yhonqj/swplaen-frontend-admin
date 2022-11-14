@@ -12,8 +12,6 @@ import { CreateProductoComponent } from "./components/productos/create-producto/
 import { EditProductoComponent } from "./components/productos/edit-producto/edit-producto.component";
 import { AuthGuard } from "../app/guards/auth.guard";
 import { ConfigComponent } from "./components/config/config.component";
-import { EditInventarioComponent } from './components/almacenes/edit-inventario/edit-inventario.component';
-import { CreateInventarioComponent } from "./components/tiendas/create-inventario/create-inventario.component";
 import { IndexProveedorComponent } from './components/proveedores/index-proveedor/index-proveedor.component';
 import { InventarioProveedorComponent } from "./components/proveedores/inventario-proveedor/inventario-proveedor.component";
 import { CreateOrdenComponent } from "./components/ordenes/create-orden/create-orden.component";
@@ -26,6 +24,13 @@ import { EditProveedorComponent } from "./components/proveedores/edit-proveedor/
 import { CreateProveedorComponent } from "./components/proveedores/create-proveedor/create-proveedor.component";
 import { MovimientoAlmacenComponent } from "./components/almacenes/movimiento-almacen/movimiento-almacen.component";
 import { AuthAdminGuard } from "./guards/authAdmin.guard";
+import { AuthProveedorGuard } from "./guards/authProveedor.guard";
+import { IndexInventarioComponent } from "./components/inventario/index-inventario/index-inventario.component";
+import { AuthAlmaceneroGuard } from "./guards/authAlmacenero.guard";
+import { CreateInventarioTiendaComponent } from "./components/tiendas/create-inventario/create-inventario.component";
+import { EditInventarioAlmacenComponent } from "./components/almacenes/edit-inventario/edit-inventario.component";
+import { CreateInventarioComponent } from "./components/inventario/create-inventario/create-inventario.component";
+import { EditInventarioComponent } from "./components/inventario/edit-inventario/edit-inventario.component";
 
 const appRoute : Routes = [
     {path: '', redirectTo: 'login', pathMatch : 'full'},
@@ -47,19 +52,23 @@ const appRoute : Routes = [
     {path: 'productos/create', component: CreateProductoComponent, canActivate:[AuthGuard]},
     {path: 'productos/edit/:id', component: EditProductoComponent, canActivate:[AuthGuard]},
 
+    {canActivate:[AuthGuard,AuthProveedorGuard],path: 'inventario', component: IndexInventarioComponent},
+    {path: 'inventario/create', component: CreateInventarioComponent, canActivate:[AuthGuard,AuthProveedorGuard]},
+    {path: 'inventario/edit/:id', component: EditInventarioComponent, canActivate:[AuthGuard,AuthProveedorGuard]},
+
     {path: 'materiasprimas', component: IndexMateriaPrimaComponent, canActivate:[AuthGuard]},
     {path: 'materiasprimas/create', component: CreateMateriaPrimaComponent, canActivate:[AuthGuard]},
     {path: 'materiasprimas/edit/:id', component: EditMateriaPrimaComponent, canActivate:[AuthGuard]},
 
-    {path: 'almacenes', component: InicioAlmacenComponent, canActivate:[AuthGuard]},
+    {path: 'almacenes', component: InicioAlmacenComponent, canActivate:[AuthGuard, AuthAlmaceneroGuard]},
     {path: 'almacenes/producto', component: IndexAlmacenComponent, canActivate:[AuthGuard]},
     {path: 'almacenes/producto/inventario/:idAlmacen', component: InventarioAlmacenComponent, canActivate:[AuthGuard]},
-    {path: 'almacenes/producto/inventario/:idAlmacen/editar/:id', component: EditInventarioComponent, canActivate:[AuthGuard]},
+    {path: 'almacenes/producto/inventario/:idAlmacen/editar/:id', component: EditInventarioAlmacenComponent, canActivate:[AuthGuard]},
     {path: 'almacenes/producto/inventario/:idAlmacen/movimientos/:id', component: MovimientoAlmacenComponent, canActivate:[AuthGuard]},
 
     {path: 'tiendas', component: IndexTiendaComponent, canActivate:[AuthGuard]},
     {path: 'tiendas/inventario/:idTienda', component: InventarioTiendaComponent, canActivate:[AuthGuard]},
-    {path: 'tiendas/inventario/:idTienda/create', component: CreateInventarioComponent, canActivate:[AuthGuard]},
+    {path: 'tiendas/inventario/:idTienda/create', component: CreateInventarioTiendaComponent, canActivate:[AuthGuard]},
 
     {path: 'configuraciones', component: ConfigComponent, canActivate:[AuthGuard]},
     /* {path: '**', component: NotFoundComponent}, */

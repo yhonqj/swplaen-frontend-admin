@@ -11,7 +11,7 @@ declare var $:any;
   templateUrl: './edit-inventario.component.html',
   styleUrls: ['./edit-inventario.component.css']
 })
-export class EditInventarioComponent implements OnInit {
+export class EditInventarioTiendaComponent implements OnInit {
 
   public id = '';
   public idAlmacen = '';

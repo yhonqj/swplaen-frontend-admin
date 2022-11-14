@@ -1,0 +1,162 @@
+<app-sidebar></app-sidebar>
+
+<div class="main-content">
+  <div class="container-fluid">
+    <div class="row justify-content-center">
+      <div class="col-12 col-lg-10 col-xl-8">
+
+        <!-- Header -->
+        <div class="header mt-md-5">
+          <div class="header-body">
+            <div class="row align-items-center">
+              <div class="col">
+
+                <!-- Pretitle -->
+                <h6 class="header-pretitle">
+                  Módulo
+                </h6>
+
+                <!-- Title -->
+                <h1 class="header-title">
+                  Materia Prima
+                </h1>
+
+              </div>
+            </div> <!-- / .row -->
+
+          </div>
+        </div>
+
+        <!-- Alert -->
+
+
+        <ng-container *ngIf="!load_data">
+          <!-- Card -->
+          <form *ngIf="producto!=undefined" #actualizarForm="ngForm" (ngSubmit)="actualizar(actualizarForm)">
+            <div class="card">
+              <div class="card-header">
+
+                <!-- Title -->
+                <h4 class="card-header-title">
+                  Editar
+                </h4>
+
+              </div>
+
+              <div *ngIf="!load_data" class="card-body">
+                <div class="row">
+                  <div class="col-lg-6">
+                    <div class="form-group">
+                      <label for="exampleInputEmail1">Titulo del la materia prima (*)</label>
+                      <input type="text" class="form-control" required placeholder="Titulo del producto" name="nombre"
+                        [(ngModel)]="producto.nombre">
+                    </div>
+                  </div>
+                  <div class="col-lg-6">
+                    <label for="exampleInputEmail1">Categoría (*)</label>
+                    <select class="form-control custom-select" id="select-input" required name="categoria"
+                      [(ngModel)]="producto.categoriaProducto">
+                      <option value="" selected disabled>Seleccionar</option>
+                      <option value="{{item._id}}" *ngFor="let item of categorias">{{item.nombre}}</option>
+                    </select>
+                  </div>
+  
+                  <div class="col-lg-12">
+                    <div class="form-group">
+                      <label for="exampleInputEmail1">Foto (*)</label>
+                      <input type="text" class="form-control" required placeholder="Foto del producto" name="foto"
+                        [(ngModel)]="producto.foto">
+                    </div>
+                  </div>
+                  <div class="col-lg-12">
+                    <div class="form-group">
+                      <label for="exampleInputEmail1">Descripción</label>
+                      <textarea type="text" class="form-control" required placeholder="Descripción del producto" name="descripcion" rows="4"
+                        [(ngModel)]="producto.descripcion"></textarea>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+              <ng-container *ngIf="load_data">
+                <div class="card-body">
+                  <div class="row">
+                    <div class="col-12 text-center">
+                      <div class="spinner-border" style="width: 3rem; height: 3rem;" role="status">
+                        <span class="visually-hidden"></span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </ng-container>
+              <div class="card-footer">
+
+                <a class="btn btn-warning btn-shadow mr-3" [routerLink]="['/productos']"
+                  routerLinkActive="router-link-active">Regresar</a>
+                <button *ngIf="!load_btn" class="btn btn-primary btn-shadow" type="submit">Actualizar y
+                  Publicar</button>
+
+                <button disabled *ngIf="load_btn" type="button" class="btn btn-primary btn-shadow">
+                  <span class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>
+                  Actualizando...
+                </button>
+
+
+              </div>
+            </div>
+          </form>
+          <ng-container *ngIf="producto == undefined">
+            <div class="card">
+              <div class="card-body">
+                <div class="row justify-content-center">
+                  <div class="col-12 col-md-5 col-xl-4 my-5">
+
+                    <div class="text-center">
+
+                      <!-- Preheading -->
+                      <h6 class="text-uppercase text-muted mb-4">
+                        404 error
+                      </h6>
+
+                      <!-- Heading -->
+                      <h1 class="display-4 mb-3">
+                        There’s no page here 😭
+                      </h1>
+
+                      <!-- Subheading -->
+                      <p class="text-muted mb-4">
+                        Looks like you ended up here by accident?
+                      </p>
+
+                      <!-- Button -->
+                      <a [routerLink]="['/productos']" class="btn btn-lg btn-primary">
+                        Regresar a productos
+                      </a>
+
+                    </div>
+
+                  </div>
+                </div>
+              </div>
+            </div>
+          </ng-container>
+        </ng-container>
+
+        <ng-container *ngIf="load_data">
+          <div class="card">
+            <div class="card-body">
+              <div class="row">
+                <div class="col-12 text-center">
+                  <div class="spinner-border text-primary" role="status">
+                    <span class="visually-hidden"></span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </ng-container>
+
+      </div>
+    </div> <!-- / .row -->
+  </div>
+</div>

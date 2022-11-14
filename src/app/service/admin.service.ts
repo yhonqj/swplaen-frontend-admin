@@ -136,6 +136,11 @@ export class AdminService {
     return this._http.get(this.url + 'materiaPrima/getAllPaginate?limit=' + limit + '&page=' + page, { headers: headers });
   }
 
+  proveedor_listar_materias_primas_paginate_admin(token: any, limit: number, page: number): Observable<any> {
+    let headers = new HttpHeaders({ 'Content-Type': 'application/json', 'token': token });
+    return this._http.get(this.url + 'proveedor/getMateriasPrimasPaginate?limit=' + limit + '&page=' + page, { headers: headers });
+  }
+
   listar_almacenes_paginate_admin(token: any, limit: number, page: number): Observable<any> {
     let headers = new HttpHeaders({ 'Content-Type': 'application/json', 'Authorization': token });
     return this._http.get(this.url + 'almacen/getAllPaginate?limit=' + limit + '&page=' + page, { headers: headers });
@@ -368,7 +373,6 @@ export class AdminService {
 
   isAuthenticate() {
     const token: any = localStorage.getItem('token');
-
     try {
       const helper = new JwtHelperService();
       var decodedToken = helper.decodeToken(token);
@@ -399,18 +403,15 @@ export class AdminService {
   }
 
   isAdmin() {
-    const tipoUsuario: any = localStorage.getItem('tipoUsuario');
-    return tipoUsuario == 1;
+    return GLOBAL.tipoUsuario == 1;
   }
 
   isAlmacenero() {
-    const tipoUsuario: any = localStorage.getItem('tipoUsuario');
-    return tipoUsuario == 2;
+    return GLOBAL.tipoUsuario == 2;
   }
 
   isProveedor() {
-    const tipoUsuario: any = localStorage.getItem('tipoUsuario');
-    return tipoUsuario == 3;
+    return GLOBAL.tipoUsuario === 3;
   }
 
   obtener_ventas_admin(token: any): Observable<any> {

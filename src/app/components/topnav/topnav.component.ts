@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { AdminService } from 'src/app/service/admin.service';
+import { GLOBAL } from "../../service/GLOBAL";
 
 @Component({
   selector: 'app-topnav',
@@ -9,7 +11,8 @@ import { Router } from '@angular/router';
 export class TopnavComponent implements OnInit {
 
   constructor(
-    private _router:Router
+    private _router:Router,
+    private _adminService:AdminService
   ) { }
 
   ngOnInit(): void {
@@ -17,9 +20,7 @@ export class TopnavComponent implements OnInit {
 
   logout(){
     window.location.reload();
-    localStorage.removeItem('token');
-    localStorage.removeItem('_id');
-    localStorage.removeItem('user_data');
+    localStorage.clear();
     this._router.navigate(['/']).then(() => {
       window.location.reload();
     });;

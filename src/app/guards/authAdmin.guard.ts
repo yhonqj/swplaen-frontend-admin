@@ -19,9 +19,8 @@ export class AuthAdminGuard implements CanActivate {
     let accessAdmin: boolean = this._adminService.isAdmin();
     if (!accessAdmin){
       return false;
-      
     }
-
+    
     return true;
   }
   

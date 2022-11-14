@@ -10,7 +10,7 @@ declare var $:any;
   templateUrl: './create-inventario.component.html',
   styleUrls: ['./create-inventario.component.css']
 })
-export class CreateInventarioComponent implements OnInit {
+export class CreateInventarioTiendaComponent implements OnInit {
 
   public imgSelect : any | ArrayBuffer = 'assets/img/01.jpg';
   public almacenes: Array<any> = [];

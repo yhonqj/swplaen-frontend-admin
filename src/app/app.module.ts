@@ -23,8 +23,6 @@ import { ConfigComponent } from './components/config/config.component';
 import { IndexTiendaComponent } from './components/tiendas/index-tienda/index-tienda.component';
 import { InventarioAlmacenComponent } from './components/almacenes/inventario-almacen/inventario-almacen.component';
 import { InventarioTiendaComponent } from './components/tiendas/inventario-tienda/inventario-tienda.component';
-import { EditInventarioComponent } from './components/almacenes/edit-inventario/edit-inventario.component';
-import { CreateInventarioComponent } from "./components/tiendas/create-inventario/create-inventario.component";
 import { InventarioProveedorComponent } from './components/proveedores/inventario-proveedor/inventario-proveedor.component';
 import { CreateOrdenComponent } from './components/ordenes/create-orden/create-orden.component';
 import { IndexOrdenComponent } from './components/ordenes/index-orden/index-orden.component';
@@ -36,6 +34,12 @@ import { CreateMateriaPrimaComponent } from './components/materiasprimas/create-
 import { EditProveedorComponent } from './components/proveedores/edit-proveedor/edit-proveedor.component';
 import { CreateProveedorComponent } from './components/proveedores/create-proveedor/create-proveedor.component';
 import { MovimientoAlmacenComponent } from './components/almacenes/movimiento-almacen/movimiento-almacen.component';
+import { IndexInventarioComponent } from './components/inventario/index-inventario/index-inventario.component';
+import { EditInventarioTiendaComponent } from './components/tiendas/edit-inventario/edit-inventario.component';
+import { CreateInventarioTiendaComponent } from './components/tiendas/create-inventario/create-inventario.component';
+import { CreateInventarioComponent } from './components/inventario/create-inventario/create-inventario.component';
+import { EditInventarioComponent } from './components/inventario/edit-inventario/edit-inventario.component';
+import { EditInventarioAlmacenComponent } from './components/almacenes/edit-inventario/edit-inventario.component';
 
 @NgModule({
   declarations: [
@@ -53,8 +57,9 @@ import { MovimientoAlmacenComponent } from './components/almacenes/movimiento-al
     CreateProductoComponent,
     EditProductoComponent,
     ConfigComponent,
-    EditInventarioComponent,
-    CreateInventarioComponent,
+    EditInventarioAlmacenComponent,
+    EditInventarioTiendaComponent,
+    CreateInventarioTiendaComponent,
     IndexProveedorComponent,
     InventarioProveedorComponent,
     CreateOrdenComponent,
@@ -65,7 +70,10 @@ import { MovimientoAlmacenComponent } from './components/almacenes/movimiento-al
     CreateMateriaPrimaComponent,
     EditProveedorComponent,
     CreateProveedorComponent,
-    MovimientoAlmacenComponent
+    MovimientoAlmacenComponent,
+    IndexInventarioComponent,
+    CreateInventarioComponent,
+    EditInventarioComponent
   ],
   imports: [
     BrowserModule,

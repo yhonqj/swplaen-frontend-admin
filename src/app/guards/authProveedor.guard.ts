@@ -21,7 +21,7 @@ export class AuthProveedorGuard implements CanActivate {
       return false;
       
     }
-
+    console.log(accessAdmin)
     return true;
   }
   

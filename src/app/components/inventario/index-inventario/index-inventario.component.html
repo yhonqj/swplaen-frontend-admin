@@ -1,0 +1,169 @@
+<app-sidebar></app-sidebar>
+
+<div class="main-content">
+  <div class="container-fluid">
+    <div class="row justify-content-center">
+      <div class="col-11">
+
+        <!-- Header -->
+        <div class="header mt-md-5">
+          <div class="header-body">
+            <div class="row align-items-center">
+              <div class="col">
+
+                <!-- Pretitle -->
+                <h6 class="header-pretitle">
+                  Módulo
+                </h6>
+
+                <!-- Title -->
+                <h1 class="header-title"> 
+                  Inventario
+                </h1>
+
+              </div>
+            </div> <!-- / .row -->
+
+          </div>
+        </div>
+
+        <!-- Alert -->
+
+
+        <!-- Card -->
+        <div class="card">
+          <div class="card-header">
+
+            <!-- Title -->
+            <h4 class="card-header-title">
+              Mostrando tu inventario
+            </h4>
+
+          </div>
+          <div class="card-body">
+            <div class="row">
+              <div class="col">
+                <a class="btn btn-success" [routerLink]="['/inventario/create']" routerLinkActive="router-link-active"
+                  style="cursor: pointer;">Nuevo Registro</a>
+              </div>
+            </div>
+          </div>
+          <div class="table-responsive">
+            <table class="table table-sm table-nowrap card-table">
+              <thead>
+                <tr>
+                  <th>Materia Prima</th>
+                  <th>Descripción</th>
+                  <th>Stock</th>
+                  <th>Precio</th>
+                  <th>Opciones</th>
+                </tr>
+              </thead>
+              <tbody class="font-size-base" *ngIf="!load">
+                <tr *ngFor="let item of productos | slice: (page-1) * pageSize : (page-1) * pageSize + pageSize">
+                  <td>
+                    <div class="d-flex align-items-center">
+
+                      <!-- Image -->
+                      <div class="avatar mr-3">
+                        <img class="avatar-img rounded me-3 mr-3" src="{{item.foto}}" alt="...">
+                      </div>
+
+                      <div class="ms-3">
+
+                        <!-- Heading -->
+                        <h4 class="fw-normal mb-1">{{item.nombre}}</h4>
+
+                      </div>
+
+                    </div>
+
+
+                  </td>
+                  <td>
+                    {{item.descripcion}}
+
+                  <td>
+                    {{item.cantidad}}
+                  </td>
+                  <td>
+                    {{item.precio}}
+                  </td>
+                  <td>
+                    <div class="dropdown">
+                      <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButtonAlias"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Opciones
+                      </button>
+
+                      <ul class="dropdown-menu" aria-labelledby="dropdownMenuButtonAlias">
+                        <li>
+                          <a class="dropdown-item" [routerLink]="['/materiasprimas/edit',item._id]">Editar</a>
+                        </li>
+                        <li>
+                          <button class="dropdown-item" href="" (click)="eliminar_producto(item._id)">Eliminar</button>
+                        </li>
+                      </ul>
+                    </div>
+
+                    <!-- <div class="modal fade" id="vs-{{item._id}}" tabindex="-1" style="display: none;" aria-hidden="true">
+                          <div class="modal-dialog modal-dialog-centered" role="document">
+                            <div class="modal-content">
+                              <div class="modal-header">
+                                <h4 class="modal-title">Confirmación de visibilidad</h4>
+                                <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                              </div>
+                              <div class="modal-body">
+                                <div class="alert d-flex alert-danger" role="alert" *ngIf="item.galeria.length!= 4">
+                                  <i class="ci-close-round lead me-3"></i>
+                                  <div>
+                                    Debe tener 4 imagenes en la galería.
+                                  </div>
+                                </div>
+      
+                                <p *ngIf="!item.vs">Desea hacer visible el producto en la tienda?</p>
+                                <p *ngIf="item.vs">Desea ocultar el producto de la tienda?</p>
+                              </div>
+                              <div class="modal-footer">
+                                <button class="btn btn-secondary btn-sm" type="button" data-dismiss="modal">Cancelar</button>
+                                <ng-container *ngIf="!load_estado">
+                                  <button *ngIf="item.galeria.length!= 4" class="btn btn-danger btn-shadow btn-sm" disabled type="button">Si, cambiar</button>
+                                  <button *ngIf="item.galeria.length== 4" class="btn btn-danger btn-shadow btn-sm" (click)="cambiar_vs(item._id,item.estado)" type="button">Si, cambiar</button>
+                                </ng-container>
+                                
+                                
+                                <button disabled *ngIf="load_estado" type="button" class="btn btn-danger btn-shadow btn-sm">
+                                  <span class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>
+                                  Cambiando...
+                                </button>
+                              </div>
+                            </div>
+                          </div>
+                        </div> -->
+                  </td>
+                </tr>
+
+              </tbody>
+              <tbody *ngIf="load">
+                <tr>
+                  <td colspan="5" class="text-center">
+                    <div class="spinner-border text-primary" role="status">
+                      <span class="visually-hidden"></span>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+
+          </div>
+
+        </div>
+        <ngb-pagination *ngIf="productos.length >= 1" [(page)]="page" [pageSize]="pageSize" [maxSize]="10"
+          [rotate]="true" [boundaryLinks]="true" [collectionSize]="productos.length"></ngb-pagination>
+
+        <br>
+
+      </div>
+    </div> <!-- / .row -->
+  </div>
+</div>
