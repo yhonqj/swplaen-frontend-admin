@@ -18,7 +18,7 @@
 
                 <!-- Title -->
                 <h1 class="header-title"> 
-                  Inventario
+                  Solicitudes
                 </h1>
 
               </div>
@@ -36,58 +36,36 @@
 
             <!-- Title -->
             <h4 class="card-header-title">
-              Mostrando tu inventario
+              Mostrando el detalle de la solicitud de compra
             </h4>
 
           </div>
-          <div class="card-body">
-            <div class="row">
-              <div class="col">
-                <a class="btn btn-success" [routerLink]="['/inventario/create']" routerLinkActive="router-link-active"
-                  style="cursor: pointer;">Nuevo Registro</a>
-              </div>
-            </div>
-          </div>
+
           <div class="table-responsive">
             <table class="table table-sm table-nowrap card-table">
               <thead>
                 <tr>
-                  <th>Materia Prima</th>
-                  <th>Descripción</th>
-                  <th>Stock</th>
-                  <th>Precio</th>
+                  <th>Fecha de Entrega</th>
+                  <th>Observación</th>
+                  <th>Total</th>
+                  <th>Estado</th>
                   <th>Opciones</th>
                 </tr>
               </thead>
               <tbody class="font-size-base" *ngIf="!load">
                 <tr *ngFor="let item of productos | slice: (page-1) * pageSize : (page-1) * pageSize + pageSize">
                   <td>
-                    <div class="d-flex align-items-center">
-
-                      <!-- Image -->
-                      <div class="avatar mr-3">
-                        <img class="avatar-img rounded me-3 mr-3" src="{{item.foto}}" alt="...">
-                      </div>
-
-                      <div class="ms-3">
-
-                        <!-- Heading -->
-                        <h4 class="fw-normal mb-1">{{item.nombre}}</h4>
-
-                      </div>
-
-                    </div>
-
-
+                    <span *ngIf="item.fechaEntrega">{{item.fechaEntregaString}}</span>
+                    <span *ngIf="!item.fechaEntrega">No registrada</span>
                   </td>
                   <td>
-                    {{item.descripcion}}
-
-                  <td>
-                    {{item.cantidad}}
+                    {{item.observacion}}
                   </td>
                   <td>
-                    {{item.precio}}
+                    {{item.total}}
+                  </td>
+                  <td>
+                    {{item.estadoOrden}}
                   </td>
                   <td>
                     <div class="dropdown">
@@ -98,10 +76,7 @@
 
                       <ul class="dropdown-menu" aria-labelledby="dropdownMenuButtonAlias">
                         <li>
-                          <a class="dropdown-item" [routerLink]="['/inventario/edit',item.materiaPrima]">Editar</a>
-                        </li>
-                        <li>
-                          <button class="dropdown-item" href="" (click)="eliminar_producto(item.materiaPrima)">Eliminar</button>
+                          <a class="dropdown-item" [routerLink]="['/solicitudes/edit',item._id]">Detalle</a>
                         </li>
                       </ul>
                     </div>

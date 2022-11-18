@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AdminService } from 'src/app/service/admin.service';
-import { GLOBAL } from 'src/app/service/GLOBAL';
 
 @Component({
   selector: 'app-sidebar',
@@ -9,12 +8,16 @@ import { GLOBAL } from 'src/app/service/GLOBAL';
   styleUrls: ['./sidebar.component.css']
 })
 export class SidebarComponent implements OnInit {
-  public GLOBAL;
+  public almacenero = false;
+  public administrador = false;
+  public proveedor = false;
   constructor(
     private _router:Router,
     private _adminService:AdminService
   ) { 
-    this.GLOBAL = GLOBAL
+    this.almacenero = _adminService.isAlmacenero()
+    this.administrador = _adminService.isAdmin()
+    this.proveedor = _adminService.isProveedor()
   }
 
   ngOnInit(): void {

@@ -12,7 +12,7 @@ declare var $: any;
 export class CreateInventarioComponent implements OnInit {
 
   public producto: any = {
-    categoriaProducto: ''
+    idMateriaPrima: ''
   };
   public imgSelect: any | ArrayBuffer = 'assets/img/01.jpg';
   public categorias: Array<any> = [];
@@ -37,48 +37,20 @@ export class CreateInventarioComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this._adminService.listar_categorias_materia_prima_admin(this.token).subscribe(
+    this._adminService.listar_materias_primas_admin(this.token).subscribe(
       response => {
         this.categorias = response;
         console.log(response);
-
       }
     );
-    this.listar_etiquetas();
-  }
-
-  listar_etiquetas() {
-    this.load_data_etiqueta = true;
-    this._adminService.listar_etiquetas_admin(this.token).subscribe(
-      response => {
-        this.etiquetas = response.data;
-        console.log(response);
-        this.load_data_etiqueta = false;
-      }
-    );
-  }
-
-
-  agregar_etiqueta() {
-    let arr_label = this.new_etiqueta.split('_');
-
-    this.arr_etiquetas.push({
-      etiqueta: arr_label[0],
-      titulo: arr_label[1]
-    });
-    this.new_etiqueta = '';
-  }
-
-  eliminar_etiqueta(idx: any) {
-    this.arr_etiquetas.splice(idx, 1)
   }
 
   registro(registroForm: any) {
     if (registroForm.valid) {
 
       this.load_btn = true;
-
-      this._adminService.registro_materia_prima_admin(this.producto, this.token).subscribe(
+      console.log(this.producto)
+      this._adminService.registro_materia_prima_proveedor_admin(this.producto, this.token).subscribe(
         response => {
           if (response == undefined) {
             iziToast.show({
@@ -97,11 +69,11 @@ export class CreateInventarioComponent implements OnInit {
               color: '#FFF',
               class: 'text-success',
               position: 'topRight',
-              message: 'Se registro correctamente el nuevo producto.'
+              message: 'Se registro correctamente la materia prima'
             });
             this.load_btn = false;
 
-            this._router.navigate(['/materiasprimas']);
+            this._router.navigate(['/inventario']);
           }
         },
         error => {

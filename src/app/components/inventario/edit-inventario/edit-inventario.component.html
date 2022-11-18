@@ -48,31 +48,22 @@
                   <div class="col-lg-6">
                     <div class="form-group">
                       <label for="exampleInputEmail1">Titulo del la materia prima (*)</label>
-                      <input type="text" class="form-control" required placeholder="Titulo del producto" name="nombre"
+                      <input type="text" class="form-control" required placeholder="Titulo del producto" readonly name="nombre"
                         [(ngModel)]="producto.nombre">
                     </div>
                   </div>
-                  <div class="col-lg-6">
-                    <label for="exampleInputEmail1">Categoría (*)</label>
-                    <select class="form-control custom-select" id="select-input" required name="categoria"
-                      [(ngModel)]="producto.categoriaProducto">
-                      <option value="" selected disabled>Seleccionar</option>
-                      <option value="{{item._id}}" *ngFor="let item of categorias">{{item.nombre}}</option>
-                    </select>
-                  </div>
-  
                   <div class="col-lg-12">
                     <div class="form-group">
-                      <label for="exampleInputEmail1">Foto (*)</label>
-                      <input type="text" class="form-control" required placeholder="Foto del producto" name="foto"
-                        [(ngModel)]="producto.foto">
+                      <label for="exampleInputEmail1">Stock</label>
+                      <input type="number" class="form-control" readonly required name="stock"
+                        [(ngModel)]="producto.cantidad">
                     </div>
                   </div>
                   <div class="col-lg-12">
                     <div class="form-group">
-                      <label for="exampleInputEmail1">Descripción</label>
-                      <textarea type="text" class="form-control" required placeholder="Descripción del producto" name="descripcion" rows="4"
-                        [(ngModel)]="producto.descripcion"></textarea>
+                      <label for="exampleInputEmail1">Precio</label>
+                      <input type="number" class="form-control" required placeholder="Precio de la materia prima" name="precio"
+                        [(ngModel)]="producto.precio">
                     </div>
                   </div>
                 </div>
@@ -91,7 +82,7 @@
               </ng-container>
               <div class="card-footer">
 
-                <a class="btn btn-warning btn-shadow mr-3" [routerLink]="['/productos']"
+                <a class="btn btn-warning btn-shadow mr-3" [routerLink]="['/inventario']"
                   routerLinkActive="router-link-active">Regresar</a>
                 <button *ngIf="!load_btn" class="btn btn-primary btn-shadow" type="submit">Actualizar y
                   Publicar</button>

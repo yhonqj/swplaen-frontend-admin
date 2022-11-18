@@ -40,6 +40,8 @@ import { CreateInventarioTiendaComponent } from './components/tiendas/create-inv
 import { CreateInventarioComponent } from './components/inventario/create-inventario/create-inventario.component';
 import { EditInventarioComponent } from './components/inventario/edit-inventario/edit-inventario.component';
 import { EditInventarioAlmacenComponent } from './components/almacenes/edit-inventario/edit-inventario.component';
+import { IndexSolicitudComponent } from './components/solicitudes/index-solicitud/index-solicitud.component';
+import { EditSolicitudComponent } from './components/solicitudes/edit-solicitud/edit-solicitud.component';
 
 @NgModule({
   declarations: [
@@ -73,7 +75,9 @@ import { EditInventarioAlmacenComponent } from './components/almacenes/edit-inve
     MovimientoAlmacenComponent,
     IndexInventarioComponent,
     CreateInventarioComponent,
-    EditInventarioComponent
+    EditInventarioComponent,
+    IndexSolicitudComponent,
+    EditSolicitudComponent
   ],
   imports: [
     BrowserModule,

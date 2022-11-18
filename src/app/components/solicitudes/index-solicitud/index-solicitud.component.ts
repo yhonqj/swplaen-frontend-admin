@@ -1,3 +1,4 @@
+import { DatePipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { AdminService } from 'src/app/service/admin.service';
 import { GLOBAL } from 'src/app/service/GLOBAL';
@@ -5,11 +6,11 @@ declare var iziToast:any;
 declare var $:any;
 
 @Component({
-  selector: 'app-index-inventario', 
-  templateUrl: './index-inventario.component.html',
-  styleUrls: ['./index-inventario.component.css']
+  selector: 'app-index-solicitud', 
+  templateUrl: './index-solicitud.component.html',
+  styleUrls: ['./index-solicitud.component.css']
 })
-export class IndexInventarioComponent implements OnInit {
+export class IndexSolicitudComponent implements OnInit {
 
   public productos :Array<any>= [];
   public productos_const  :Array<any>= [];
@@ -30,7 +31,8 @@ export class IndexInventarioComponent implements OnInit {
   public url = GLOBAL.url;
 
   constructor(
-    private _adminService:AdminService
+    private _adminService:AdminService,
+    private datePipe: DatePipe
   ) { }
 
   ngOnInit(): void {
@@ -39,9 +41,14 @@ export class IndexInventarioComponent implements OnInit {
 
   init_data(){
     this.load = true;
-    this._adminService.proveedor_listar_materias_primas_paginate_admin(this.token,this.pageSize, this.page).subscribe(
+    this._adminService.proveedor_listar_ordenes_paginate_admin(this.token,this.pageSize, this.page).subscribe(
       response=>{
         this.productos= response.results;
+        for(let i = 0; i < this.productos.length; i++){
+          if (this.productos[i].fechaEntrega != null){
+            this.productos[i].fechaEntregaString = this.datePipe.transform(this.productos[i].fechaEntrega, 'dd-MM-yyyy');
+          }
+        }
         this.load = false;
       }
     );

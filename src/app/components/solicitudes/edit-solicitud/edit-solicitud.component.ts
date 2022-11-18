@@ -7,11 +7,11 @@ declare var $:any;
 
 
 @Component({
-  selector: 'app-edit-inventario',
-  templateUrl: './edit-inventario.component.html',
-  styleUrls: ['./edit-inventario.component.css']
+  selector: 'app-edit-solicitud',
+  templateUrl: './edit-solicitud.component.html',
+  styleUrls: ['./edit-solicitud.component.css']
 })
-export class EditInventarioComponent implements OnInit {
+export class EditSolicitudComponent implements OnInit {
 
   public id = '';
   public load_data = false;
@@ -19,10 +19,14 @@ export class EditInventarioComponent implements OnInit {
     idCategoria: '',
     visibilidad: ''
   };
+  public productos: any[] = [];
   public imgSelect : any | ArrayBuffer = 'assets/img/01.jpg';
   public categorias: Array<any> = [];
   public config : any = {};
+  public page = 1;
+  public pageSize = 24;
   public load_btn = false;
+  public load = false;
   public file : any = undefined;
 
 
@@ -45,38 +49,14 @@ export class EditInventarioComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this._adminService.listar_categorias_materia_prima_admin(this.token).subscribe(
-      response=>{
-        this.categorias = response;
-      }
-    );
-
     this._route.params.subscribe(
       params=>{
-        this.id = params['id'];
-        console.log(this.id);
-        this.load_data = true;
-        this._adminService.obtener_materia_prima_proveedor_admin(this.id,this.token).subscribe(
-          response=>{
-           if(response == undefined){
-            this.load_data = false;
-            this.producto = undefined;
-            
-           }else{
-             this.load_data = false;
-             this.producto = response;
-             this.imgSelect = this.url +'obtener_portada/'+this.producto.portada;
-           }
-            
-          },
-          error=>{
-            console.log(error);
-            
-          }
-        );
-        
+    this.id = params['id'];
+    this._adminService.listar_materias_primas_orden_paginate(this.token, this.id, this.pageSize, this.page).subscribe(
+      response => {
+        this.productos = response.results;
       }
-    );
+    )})
   }
 
 

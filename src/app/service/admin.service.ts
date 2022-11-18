@@ -57,8 +57,13 @@ export class AdminService {
     return this._http.get(this.url + 'proveedor/getAllPaginate?limit=' + limit + '&page=' + page, { headers: headers });
   }
 
+  listar_materias_primas_orden_paginate(token: any, id: string, limit: number, page: number): Observable<any> {
+    let headers = new HttpHeaders({ 'Content-Type': 'application/json', 'token': token });
+    return this._http.get(this.url + 'orden/getMateriasPrimasByIdPaginate?id=' + id + '&limit=' + limit + '&page=' + page, { headers: headers });
+  }
+
   listar_materias_primas_proveedor_paginate(token: any, id: string, limit: number, page: number): Observable<any> {
-    let headers = new HttpHeaders({ 'Content-Type': 'application/json', 'Authorization': token });
+    let headers = new HttpHeaders({ 'Content-Type': 'application/json', 'token': token });
     return this._http.get(this.url + 'proveedor/getMateriasPrimasByIdPaginate?id=' + id + '&limit=' + limit + '&page=' + page, { headers: headers });
   }
 
@@ -106,6 +111,11 @@ export class AdminService {
     return this._http.post(this.url + 'materiaPrima/add', data, { headers: headers });
   }
 
+  registro_materia_prima_proveedor_admin(data: any, token: any): Observable<any> {
+    let headers = new HttpHeaders({ 'token': token });
+    return this._http.patch(this.url + 'proveedor/addMateriaPrima', data, { headers: headers });
+  }
+
   eliminar_proveedor(data: any, token: any): Observable<any> {
     let headers = new HttpHeaders({ 'Content-Type': 'application/json', 'token': token });
     return this._http.delete(this.url + 'proveedor/remove', { headers: headers, body: data });
@@ -114,6 +124,11 @@ export class AdminService {
   eliminar_producto(data: any, token: any): Observable<any> {
     let headers = new HttpHeaders({ 'Content-Type': 'application/json', 'token': token });
     return this._http.delete(this.url + 'producto/remove', { headers: headers, body: data });
+  }
+
+  eliminar_materia_prima_proveedor(data: any, token: any): Observable<any> {
+    let headers = new HttpHeaders({ 'Content-Type': 'application/json', 'token': token });
+    return this._http.delete(this.url + 'proveedor/removeMateriaPrima', { headers: headers, body: data });
   }
 
   eliminar_materia_prima(data: any, token: any): Observable<any> {
@@ -131,6 +146,11 @@ export class AdminService {
     return this._http.get(this.url + 'producto/getAllPaginate?limit=' + limit + '&page=' + page, { headers: headers });
   }
 
+  listar_materias_primas_admin(token: any): Observable<any> {
+    let headers = new HttpHeaders({ 'Content-Type': 'application/json', 'token': token });
+    return this._http.get(this.url + 'materiaPrima/getAll', { headers: headers });
+  }
+
   listar_materias_primas_paginate_admin(token: any, limit: number, page: number): Observable<any> {
     let headers = new HttpHeaders({ 'Content-Type': 'application/json', 'Authorization': token });
     return this._http.get(this.url + 'materiaPrima/getAllPaginate?limit=' + limit + '&page=' + page, { headers: headers });
@@ -139,6 +159,11 @@ export class AdminService {
   proveedor_listar_materias_primas_paginate_admin(token: any, limit: number, page: number): Observable<any> {
     let headers = new HttpHeaders({ 'Content-Type': 'application/json', 'token': token });
     return this._http.get(this.url + 'proveedor/getMateriasPrimasPaginate?limit=' + limit + '&page=' + page, { headers: headers });
+  }
+
+  proveedor_listar_ordenes_paginate_admin(token: any, limit: number, page: number): Observable<any> {
+    let headers = new HttpHeaders({ 'Content-Type': 'application/json', 'token': token });
+    return this._http.get(this.url + 'proveedor/getOrdenesPaginate?limit=' + limit + '&page=' + page, { headers: headers });
   }
 
   listar_almacenes_paginate_admin(token: any, limit: number, page: number): Observable<any> {
@@ -164,6 +189,11 @@ export class AdminService {
   obtener_producto_admin(id: any, token: any): Observable<any> {
     let headers = new HttpHeaders({ 'Content-Type': 'application/json', 'Authorization': token });
     return this._http.get(this.url + 'producto/getById?id=' + id, { headers: headers });
+  }
+
+  obtener_materia_prima_proveedor_admin(idMateriaPrima: any, token: any): Observable<any> {
+    let headers = new HttpHeaders({ 'Content-Type': 'application/json', 'token': token });
+    return this._http.get(this.url + 'proveedor/getMateriaPrimaById?idMateriaPrima=' + idMateriaPrima, { headers: headers });
   }
 
   obtener_materia_prima_admin(id: any, token: any): Observable<any> {
@@ -252,6 +282,11 @@ export class AdminService {
   actualizar_proveedor_admin(data: any, token: any): Observable<any> {
     let headers = new HttpHeaders({ 'Content-Type': 'application/json', 'Authorization': token });
     return this._http.put(this.url + 'proveedor/update', data, { headers: headers });
+  }
+
+  actualizar_materia_prima_proveedor_admin(data: any, token: any): Observable<any> {
+      let headers = new HttpHeaders({ 'Content-Type': 'application/json', 'token': token });
+      return this._http.patch(this.url + 'proveedor/updateMateriaPrima', data, { headers: headers });
   }
 
   actualizar_materia_prima_admin(data: any, token: any): Observable<any> {
@@ -403,15 +438,27 @@ export class AdminService {
   }
 
   isAdmin() {
-    return GLOBAL.tipoUsuario == 1;
+    const token: any = localStorage.getItem('token');
+    const helper = new JwtHelperService();
+    var decodedToken = helper.decodeToken(token);
+    const tipoUsuario = Number(decodedToken.tipoUsuario)
+    return tipoUsuario === 1;
   }
 
   isAlmacenero() {
-    return GLOBAL.tipoUsuario == 2;
+    const token: any = localStorage.getItem('token');
+    const helper = new JwtHelperService();
+    var decodedToken = helper.decodeToken(token);
+    const tipoUsuario = Number(decodedToken.tipoUsuario)
+    return tipoUsuario === 2;
   }
 
   isProveedor() {
-    return GLOBAL.tipoUsuario === 3;
+    const token: any = localStorage.getItem('token');
+    const helper = new JwtHelperService();
+    var decodedToken = helper.decodeToken(token);
+    const tipoUsuario = Number(decodedToken.tipoUsuario)
+    return tipoUsuario === 3;
   }
 
   obtener_ventas_admin(token: any): Observable<any> {
