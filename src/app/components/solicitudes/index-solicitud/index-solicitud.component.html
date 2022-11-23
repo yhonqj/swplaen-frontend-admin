@@ -62,10 +62,24 @@
                     {{item.observacion}}
                   </td>
                   <td>
-                    {{item.total}}
+                    S/ {{item.total}}
                   </td>
                   <td>
-                    {{item.estadoOrden}}
+                    <span *ngIf="item.estadoOrden === 1" span class="badge badge-primary">
+                      En revisión
+                    </span>
+                    <span *ngIf="item.estadoOrden === 2" span class="badge badge-danger">
+                      Rechazada
+                    </span>
+                    <span *ngIf="item.estadoOrden === 3" span class="badge badge-warning">
+                      Pendiente
+                    </span>
+                    <span *ngIf="item.estadoOrden === 4" span class="badge badge-success">
+                      Completada
+                    </span>
+                    <span *ngIf="item.estadoOrden === 5" span class="badge badge-info">
+                      Reprogramada
+                    </span>
                   </td>
                   <td>
                     <div class="dropdown">

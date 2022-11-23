@@ -17,7 +17,7 @@
                 </h6>
 
                 <!-- Title -->
-                <h1 class="header-title"> 
+                <h1 class="header-title">
                   Solicitudes
                 </h1>
 
@@ -45,77 +45,48 @@
             <table class="table table-sm table-nowrap card-table">
               <thead>
                 <tr>
-                  <th>Fecha de Entrega</th>
-                  <th>Observación</th>
-                  <th>Total</th>
-                  <th>Estado</th>
-                  <th>Opciones</th>
+                  <th>Materia Prima</th>
+                  <th>Categoria</th>
+                  <th>Descripcion</th>
+                  <th>Cantidad</th>
+                  <th>Precio</th>
                 </tr>
               </thead>
               <tbody class="font-size-base" *ngIf="!load">
                 <tr *ngFor="let item of productos | slice: (page-1) * pageSize : (page-1) * pageSize + pageSize">
                   <td>
-                    <span *ngIf="item.fechaEntrega">{{item.fechaEntregaString}}</span>
-                    <span *ngIf="!item.fechaEntrega">No registrada</span>
-                  </td>
-                  <td>
-                    {{item.observacion}}
-                  </td>
-                  <td>
-                    {{item.total}}
-                  </td>
-                  <td>
-                    {{item.estadoOrden}}
-                  </td>
-                  <td>
-                    <div class="dropdown">
-                      <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButtonAlias"
-                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Opciones
-                      </button>
+                    <div class="d-flex align-items-center">
 
-                      <ul class="dropdown-menu" aria-labelledby="dropdownMenuButtonAlias">
-                        <li>
-                          <a class="dropdown-item" [routerLink]="['/solicitudes/edit',item._id]">Detalle</a>
-                        </li>
-                      </ul>
+                      <!-- Image -->
+                      <div class="avatar mr-3">
+                        <img class="avatar-img rounded me-3 mr-3" src="{{item.foto}}" alt="...">
+                      </div>
+
+                      <div class="ms-3">
+
+                        <!-- Heading -->
+                        <h4 class="fw-normal mb-1">{{item.nombre}}</h4>
+
+                        <!-- Text -->
+
+
+                      </div>
+
                     </div>
-
-                    <!-- <div class="modal fade" id="vs-{{item._id}}" tabindex="-1" style="display: none;" aria-hidden="true">
-                          <div class="modal-dialog modal-dialog-centered" role="document">
-                            <div class="modal-content">
-                              <div class="modal-header">
-                                <h4 class="modal-title">Confirmación de visibilidad</h4>
-                                <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
-                              </div>
-                              <div class="modal-body">
-                                <div class="alert d-flex alert-danger" role="alert" *ngIf="item.galeria.length!= 4">
-                                  <i class="ci-close-round lead me-3"></i>
-                                  <div>
-                                    Debe tener 4 imagenes en la galería.
-                                  </div>
-                                </div>
-      
-                                <p *ngIf="!item.vs">Desea hacer visible el producto en la tienda?</p>
-                                <p *ngIf="item.vs">Desea ocultar el producto de la tienda?</p>
-                              </div>
-                              <div class="modal-footer">
-                                <button class="btn btn-secondary btn-sm" type="button" data-dismiss="modal">Cancelar</button>
-                                <ng-container *ngIf="!load_estado">
-                                  <button *ngIf="item.galeria.length!= 4" class="btn btn-danger btn-shadow btn-sm" disabled type="button">Si, cambiar</button>
-                                  <button *ngIf="item.galeria.length== 4" class="btn btn-danger btn-shadow btn-sm" (click)="cambiar_vs(item._id,item.estado)" type="button">Si, cambiar</button>
-                                </ng-container>
-                                
-                                
-                                <button disabled *ngIf="load_estado" type="button" class="btn btn-danger btn-shadow btn-sm">
-                                  <span class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>
-                                  Cambiando...
-                                </button>
-                              </div>
-                            </div>
-                          </div>
-                        </div> -->
                   </td>
+                  <td>
+                    {{item.categoria}}
+                  </td>
+                  <td>
+                    {{item.descripcion}}
+                  </td>
+                  <td>
+                    {{item.cantidad}}
+                  </td>
+                  <td>
+                    {{item.precio}}
+                  </td>
+                  
                 </tr>
 
               </tbody>
@@ -131,7 +102,17 @@
             </table>
 
           </div>
-
+          <div class="card-footer">
+            <a class="btn btn-warning btn-shadow mr-3" [routerLink]="['/solicitudes']"
+              routerLinkActive="router-link-active">Regresar</a>
+            <button *ngIf="!load_btn && estado === 1" class="btn btn-primary btn-shadow" style="margin-right: 12px" type="submit" (click)="aceptar()">Aceptar</button>
+            <button *ngIf="!load_btn && estado === 1" class="btn btn-danger btn-shadow" type="submit" (click)="rechazar()">Rechazar</button>
+            <button *ngIf="!load_btn && estado === 3" class="btn btn-primary btn-shadow" style="margin-right: 12px" type="submit" (click)="completar()">Completar</button>
+            <button disabled *ngIf="load_btn" type="button" class="btn btn-primary btn-shadow">
+              <span class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>
+              Actualizando...
+            </button>
+          </div>
         </div>
         <ngb-pagination *ngIf="productos.length >= 1" [(page)]="page" [pageSize]="pageSize" [maxSize]="10"
           [rotate]="true" [boundaryLinks]="true" [collectionSize]="productos.length"></ngb-pagination>

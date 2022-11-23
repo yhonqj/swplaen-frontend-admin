@@ -37,6 +37,21 @@ export class AdminService {
     return this._http.get(this.url + 'categoriaProducto/getAll', { headers: headers });
   }
 
+  aceptar_orden_admin(token: any, data: any): Observable<any> {
+    let headers = new HttpHeaders({ 'Content-Type': 'application/json', 'token': token });
+    return this._http.patch(this.url + 'orden/aceptar',data, { headers: headers });
+  }
+
+  completar_orden_admin(token: any, data: any): Observable<any> {
+    let headers = new HttpHeaders({ 'Content-Type': 'application/json', 'token': token });
+    return this._http.patch(this.url + 'orden/completar',data, { headers: headers });
+  }
+
+  rechazar_orden_admin(token: any, data: any): Observable<any> {
+    let headers = new HttpHeaders({ 'Content-Type': 'application/json', 'token': token });
+    return this._http.patch(this.url + 'orden/rechazar',data, { headers: headers });
+  }
+
   obtener_info_profile_admin(token: any): Observable<any> {
     let headers = new HttpHeaders({ 'Content-Type': 'application/json', 'token': token });
     return this._http.get(this.url + 'usuario/getAdminProfile', { headers: headers });
