@@ -52,7 +52,15 @@ export class LoginComponent implements OnInit {
             console.log(response);
             if(response.token != null){
               localStorage.setItem('token',response.token);
-              this._router.navigate(['/dashboard']);
+              if(this._adminService.isAdmin()){
+                this._router.navigate(['/productos']);
+              }
+              else  if(this._adminService.isAlmacenero()){
+                this._router.navigate(['/almacenes']);
+              }
+              else  if(this._adminService.isProveedor()){
+                this._router.navigate(['/inventario']);
+              }
             }else{
               iziToast.show({
                   title: 'ERROR USER',
