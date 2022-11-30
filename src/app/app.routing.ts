@@ -42,17 +42,17 @@ const appRoute : Routes = [
 
     {path: 'clientes', component: IndexClientesComponent, canActivate:[AuthGuard]},
 
-    {path: 'ordenes', component: IndexOrdenComponent, canActivate:[AuthGuard]},
-    {path: 'ordenes/create', component: CreateOrdenComponent, canActivate:[AuthGuard]},
+    {path: 'ordenes', component: IndexOrdenComponent, canActivate:[AuthGuard,AuthAdminGuard]},
+    {path: 'ordenes/create', component: CreateOrdenComponent, canActivate:[AuthGuard,AuthAdminGuard]},
 
-    {path: 'proveedores', component: IndexProveedorComponent, canActivate:[AuthGuard]},
-    {path: 'proveedores/create', component: CreateProveedorComponent, canActivate:[AuthGuard]},
-    {path: 'proveedores/edit/:id', component: EditProveedorComponent, canActivate:[AuthGuard]},
-    {path: 'proveedores/inventario/:idProveedor', component: InventarioProveedorComponent, canActivate:[AuthGuard]},
+    {path: 'proveedores', component: IndexProveedorComponent, canActivate:[AuthGuard,AuthAdminGuard]},
+    {path: 'proveedores/create', component: CreateProveedorComponent, canActivate:[AuthGuard,AuthAdminGuard]},
+    {path: 'proveedores/edit/:id', component: EditProveedorComponent, canActivate:[AuthGuard,AuthAdminGuard]},
+    {path: 'proveedores/inventario/:idProveedor', component: InventarioProveedorComponent, canActivate:[AuthGuard,AuthAdminGuard]},
 
     {path: 'productos', component: IndexProductoComponent, canActivate:[AuthGuard,AuthAdminGuard]},
-    {path: 'productos/create', component: CreateProductoComponent, canActivate:[AuthGuard]},
-    {path: 'productos/edit/:id', component: EditProductoComponent, canActivate:[AuthGuard]},
+    {path: 'productos/create', component: CreateProductoComponent, canActivate:[AuthGuard,AuthAdminGuard]},
+    {path: 'productos/edit/:id', component: EditProductoComponent, canActivate:[AuthGuard,AuthAdminGuard]},
 
     {path: 'solicitudes', component: IndexSolicitudComponent, canActivate:[AuthGuard,AuthProveedorGuard]},
     {path: 'solicitudes/edit/:id', component: EditSolicitudComponent, canActivate:[AuthGuard,AuthProveedorGuard]},
@@ -61,19 +61,19 @@ const appRoute : Routes = [
     {path: 'inventario/create', component: CreateInventarioComponent, canActivate:[AuthGuard,AuthProveedorGuard]},
     {path: 'inventario/edit/:id', component: EditInventarioComponent, canActivate:[AuthGuard,AuthProveedorGuard]},
 
-    {path: 'materiasprimas', component: IndexMateriaPrimaComponent, canActivate:[AuthGuard]},
-    {path: 'materiasprimas/create', component: CreateMateriaPrimaComponent, canActivate:[AuthGuard]},
-    {path: 'materiasprimas/edit/:id', component: EditMateriaPrimaComponent, canActivate:[AuthGuard]},
+    {path: 'materiasprimas', component: IndexMateriaPrimaComponent, canActivate:[AuthGuard,AuthAdminGuard]},
+    {path: 'materiasprimas/create', component: CreateMateriaPrimaComponent, canActivate:[AuthGuard,AuthAdminGuard]},
+    {path: 'materiasprimas/edit/:id', component: EditMateriaPrimaComponent, canActivate:[AuthGuard,AuthAdminGuard]},
 
-    {path: 'almacenes', component: InicioAlmacenComponent, canActivate:[AuthGuard]},
-    {path: 'almacenes/producto', component: IndexAlmacenComponent, canActivate:[AuthGuard]},
-    {path: 'almacenes/producto/inventario/:idAlmacen', component: InventarioAlmacenComponent, canActivate:[AuthGuard]},
-    {path: 'almacenes/producto/inventario/:idAlmacen/editar/:id', component: EditInventarioAlmacenComponent, canActivate:[AuthGuard]},
-    {path: 'almacenes/producto/inventario/:idAlmacen/movimientos/:id', component: MovimientoAlmacenComponent, canActivate:[AuthGuard]},
+    {path: 'almacenes', component: InicioAlmacenComponent, canActivate:[AuthGuard,AuthAlmaceneroGuard]},
+    {path: 'almacenes/producto', component: IndexAlmacenComponent, canActivate:[AuthGuard,AuthAlmaceneroGuard]},
+    {path: 'almacenes/producto/inventario/:idAlmacen', component: InventarioAlmacenComponent, canActivate:[AuthGuard,AuthAlmaceneroGuard]},
+    {path: 'almacenes/producto/inventario/:idAlmacen/editar/:id', component: EditInventarioAlmacenComponent, canActivate:[AuthGuard,AuthAlmaceneroGuard]},
+    {path: 'almacenes/producto/inventario/:idAlmacen/movimientos/:id', component: MovimientoAlmacenComponent, canActivate:[AuthGuard,AuthAlmaceneroGuard]},
 
-    {path: 'tiendas', component: IndexTiendaComponent, canActivate:[AuthGuard]},
-    {path: 'tiendas/inventario/:idTienda', component: InventarioTiendaComponent, canActivate:[AuthGuard]},
-    {path: 'tiendas/inventario/:idTienda/create', component: CreateInventarioTiendaComponent, canActivate:[AuthGuard]},
+    {path: 'tiendas', component: IndexTiendaComponent, canActivate:[AuthGuard,AuthAdminGuard]},
+    {path: 'tiendas/inventario/:idTienda', component: InventarioTiendaComponent, canActivate:[AuthGuard,AuthAdminGuard]},
+    {path: 'tiendas/inventario/:idTienda/create', component: CreateInventarioTiendaComponent, canActivate:[AuthGuard,AuthAdminGuard]},
 
     {path: 'configuraciones', component: ConfigComponent, canActivate:[AuthGuard]},
     /* {path: '**', component: NotFoundComponent}, */

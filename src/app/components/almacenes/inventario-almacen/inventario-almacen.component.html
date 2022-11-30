@@ -50,7 +50,7 @@
                       <option value="" selected disabled>Seleccionar</option>
                       <option value="{{item._id}}" *ngFor="let item of variedades">{{item.nombre}}</option>
                     </select>
-                    <input required class="form-control mb-3 mr-sm-4" min="0" type="number" placeholder="Cantidad"
+                    <input required class="form-control mb-3 mr-sm-4" min="1" type="number" placeholder="Cantidad"
                       name="cantidad" [(ngModel)]="producto.cantidad">
 
                     <input required class="form-control mb-3 mr-sm-4" type="date"
